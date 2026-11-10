@@ -57,11 +57,11 @@ int main() {
 
 	cout << "-------------------------------------------------------------------------------";*/
 
-	printTextScreen({ "PLEASE ADJUST TERMINAL SIZE TO 80 x 25 CHARACTERS", "PRESS ENTER TO CONTINUE" });
-	printTextScreen({ "INSERT TITLE HERE", "By Miles Crane and Trevor Past", "For the Fall 2026 MSU Game Jam"});
+	printTextScreen({ "PLEASE ADJUST TERMINAL SIZE TO 80 x 25 CHARACTERS", "", "PRESS ENTER TO CONTINUE" });
+	printTextScreen({ "INSERT TITLE HERE", "By Miles Crane and Trevor Past", "For the Fall 2026 MSU Game Jam", "", "PRESS ENTER TO CONTINUE"});
 
 
-	cout << "pee pee";
+	cout << "placeholder";
 
 	cin.ignore();
 
