@@ -3,11 +3,12 @@
 #include <vector>
 #include <chrono>
 #include <thread>
+#include "OutputScreens.h"
 
 using namespace std;
 using namespace std::chrono;
 
-void clearScreen(){
+/*void clearScreen(){
 	for (int i = 0; i < 200; i++){
 		cout << " " << endl;
 	}
@@ -85,33 +86,18 @@ string printTextWithInputScreen(vector<string> lines) {
 	clearScreen();
 
 	return answer;
-}
+}*/
 
 int main() {
-	/*cout << "--------------------------------------------------------------------------------" << endl;
+	//cout << "\e[8;25;80t"; // resize terminal window to 80 x 25 characters
 
-	for (int i = 0; i < 11; i++) {
-		cout << "|                                                                              |" << endl;
-	}
+	OutputScreens outscr;
 
-	cout << "|              PLEASE ADJUST TERMINAL SIZE TO 80 x 25 CHARACTERS               |" << endl;
-	cout << "|                           PRESS ENTER TO CONTINUE                            |" << endl;
-
-	for (int i = 0; i < 10; i++) {
-		cout << "|                                                                              |" << endl;
-	}
-
-	cout << "-------------------------------------------------------------------------------";*/
-
-	/*clearScreen();
-	cout << "\e[8;25;80t";*/ // resize terminal window to 80 x 25 characters
-
-	printTextScreen({ "INSERT TITLE HERE", "By Miles Crane and Trevor Past", "For the Fall 2026 MSU Game Jam", "", "PRESS ENTER TO CONTINUE"});
-	printTextScreen({"HOW TO INTERACT WITH GAME:", "", "Options for input will be shown on screen in between [square brackets].", "If you are given an \"[O]ption\", type \"O\" and press Enter to choose it.", "", "When there are no options shown on screen, press Enter to continue."});
-
+	outscr.printTextScreen({ "PLEASE ADJUST TERMINAL SIZE TO 80 x 25 CHARACTERS", "", "PRESS ENTER TO CONTINUE"});
+	outscr.printTextScreen({ "INSERT TITLE HERE", "By Miles Crane and Trevor Past", "For the Fall 2026 MSU Game Jam", "", "PRESS ENTER TO CONTINUE"});
+	outscr.printTextScreen({"HOW TO INTERACT WITH GAME:", "", "Options for input will be shown on screen in between [square brackets].", "If you are given an \"[O]ption\", type \"O\" and press Enter to choose it.", "", "When there are no options shown on screen, press Enter to continue."});
 
 	cout << "placeholder";
-
 	cin.ignore();
 
 
