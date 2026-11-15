@@ -9,12 +9,18 @@ using namespace std;
 OutputScreens::OutputScreens(){ };
 
 void OutputScreens::clearScreen(){
-	for (int i = 0; i < 200; i++){
-		cout << " " << endl;
-	}
+	//for (int i = 0; i < 200; i++){
+	//	cout << " " << endl;
+	//}
+	
+	// \033[ indicates this is a format sequence
+	// 2J means clear visible screen, 3J clears everything from the scroll buffer, 999;1H moves cursor to bottom of screen  
+    std::cout << "\033[2J\033[3J\033[999;1H" << std::flush;
+
+
 }
 
-void OutputScreens::printTextScreen(vector<string> lines) {
+void OutputScreens::printTextScreen(const vector<string>& lines) {
 	int upperBlankLines = ( (23 - lines.size()) / 2 );
 	int lowerBlankLines = (23 - lines.size() - upperBlankLines);
 
@@ -49,7 +55,7 @@ void OutputScreens::printTextScreen(vector<string> lines) {
 	clearScreen();
 }
 
-void OutputScreens::printTextScreenNoInput(vector<string> lines){
+void OutputScreens::printTextScreenNoInput(const vector<string>& lines){
 	clearScreen();
     int upperBlankLines = ( (23 - lines.size()) / 2 );
 	int lowerBlankLines = (23 - lines.size() - upperBlankLines);
@@ -84,7 +90,7 @@ void OutputScreens::printTextScreenNoInput(vector<string> lines){
 	cout << "-------------------------------------------------------------------------------";
 }
 
-string OutputScreens::printTextWithInputScreen(vector<string> lines) {
+string OutputScreens::printTextWithInputScreen(const vector<string>& lines) {
 	int upperBlankLines = ( (23 - lines.size()) / 2 );
 	int lowerBlankLines = (23 - lines.size() - upperBlankLines);
 
@@ -123,7 +129,7 @@ string OutputScreens::printTextWithInputScreen(vector<string> lines) {
 	return answer;
 }
 
-char OutputScreens::printTextWithCharInputScreen(vector<string> lines){
+char OutputScreens::printTextWithCharInputScreen(const vector<string>& lines){
     int upperBlankLines = ( (23 - lines.size()) / 2 );
 	int lowerBlankLines = (23 - lines.size() - upperBlankLines);
 
