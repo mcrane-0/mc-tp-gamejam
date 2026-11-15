@@ -62,7 +62,7 @@ void OutputScreens::printTextScreenNoInput(vector<string> lines){
 
 	for (int i = 0; i < lines.size(); i++) {
         clearScreen();
-        
+
 		int leftBlankChars = ( (78 - lines[i].length()) / 2);
 		int rightBlankChars = (78 - lines[i].length() - leftBlankChars);
 		cout << "|";
@@ -122,7 +122,7 @@ string OutputScreens::printTextWithInputScreen(vector<string> lines) {
 	return answer;
 }
 
-char printTextWithCharInputScreen(vector<string> lines){
+char OutputScreens::printTextWithCharInputScreen(vector<string> lines){
     int upperBlankLines = ( (23 - lines.size()) / 2 );
 	int lowerBlankLines = (23 - lines.size() - upperBlankLines);
 
@@ -153,7 +153,7 @@ char printTextWithCharInputScreen(vector<string> lines){
 
 	cout << "--------------------------------------------------------------------------------" << endl;
 
-	string answer;
+	char answer;
 	cin >> answer;
 
 	clearScreen();
