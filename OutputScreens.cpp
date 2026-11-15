@@ -50,6 +50,7 @@ void OutputScreens::printTextScreen(vector<string> lines) {
 }
 
 void OutputScreens::printTextScreenNoInput(vector<string> lines){
+	clearScreen();
     int upperBlankLines = ( (23 - lines.size()) / 2 );
 	int lowerBlankLines = (23 - lines.size() - upperBlankLines);
 
@@ -61,7 +62,7 @@ void OutputScreens::printTextScreenNoInput(vector<string> lines){
 	}
 
 	for (int i = 0; i < lines.size(); i++) {
-        clearScreen();
+        
 
 		int leftBlankChars = ( (78 - lines[i].length()) / 2);
 		int rightBlankChars = (78 - lines[i].length() - leftBlankChars);
