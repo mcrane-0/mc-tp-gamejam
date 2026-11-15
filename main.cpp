@@ -14,9 +14,6 @@ void clearScreen(){
 }
 
 void printTextScreen(vector<string> lines) {
-	clearScreen();
-	cout << "\e[8;25;80t"; // resize terminal window to 80 x 25 characters
-
 	int upperBlankLines = ( (23 - lines.size()) / 2 );
 	int lowerBlankLines = (23 - lines.size() - upperBlankLines);
 
@@ -48,6 +45,46 @@ void printTextScreen(vector<string> lines) {
 	cout << "-------------------------------------------------------------------------------";
 
 	cin.ignore();
+	clearScreen();
+}
+
+string printTextWithInputScreen(vector<string> lines) {
+	int upperBlankLines = ( (23 - lines.size()) / 2 );
+	int lowerBlankLines = (23 - lines.size() - upperBlankLines);
+
+	cout << "--------------------------------------------------------------------------------" << endl;
+	//this_thread::sleep_for(0.1s);
+
+	for (int i = 0; i < upperBlankLines; i++) {
+		cout << "|                                                                              |" << endl;
+	}
+
+	for (int i = 0; i < lines.size(); i++) {
+		int leftBlankChars = ( (78 - lines[i].length()) / 2);
+		int rightBlankChars = (78 - lines[i].length() - leftBlankChars);
+		cout << "|";
+		for (int j = 0; j < leftBlankChars; j++) {
+			cout << " ";
+		}
+		cout << lines[i];
+		for (int j = 0; j < rightBlankChars; j++) {
+			cout << " ";
+		}
+		cout << "|" << endl;
+	}
+
+	for (int i = 0; i < (lowerBlankLines - 1); i++) {
+		cout << "|                                                                              |" << endl;
+	}
+
+	cout << "--------------------------------------------------------------------------------" << endl;
+
+	string answer = "";
+	getline(cin, answer);
+
+	clearScreen();
+
+	return answer;
 }
 
 int main() {
@@ -71,7 +108,7 @@ int main() {
 
 	printTextScreen({ "INSERT TITLE HERE", "By Miles Crane and Trevor Past", "For the Fall 2026 MSU Game Jam", "", "PRESS ENTER TO CONTINUE"});
 	printTextScreen({"HOW TO INTERACT WITH GAME:", "", "Options for input will be shown on screen in between [square brackets].", "If you are given an \"[O]ption\", type \"O\" and press Enter to choose it.", "", "When there are no options shown on screen, press Enter to continue."});
-	
+
 
 	cout << "placeholder";
 
