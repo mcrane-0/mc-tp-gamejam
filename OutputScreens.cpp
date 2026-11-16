@@ -42,7 +42,7 @@ void OutputScreens::printTextScreen(const vector<string>& lines) {
 		for (int j = 0; j < rightBlankChars; j++) {
 			cout << " ";
 		}
-		cout << "|" << endl;
+		cout << "|" << "\n";
 	}
 
 	for (int i = 0; i < lowerBlankLines; i++) {
@@ -80,7 +80,7 @@ void OutputScreens::printTextScreenNoInput(const vector<string>& lines){
 		for (int j = 0; j < rightBlankChars; j++) {
 			cout << " ";
 		}
-		cout << "|" << endl;
+		cout << "|" << "\n";
 	}
 
 	for (int i = 0; i < lowerBlankLines; i++) {
@@ -90,7 +90,7 @@ void OutputScreens::printTextScreenNoInput(const vector<string>& lines){
 	cout << "-------------------------------------------------------------------------------";
 }
 
-string OutputScreens::printTextWithInputScreen(const vector<string>& lines) {
+string OutputScreens::printTextScreenWithInput(const vector<string>& lines) {
 	int upperBlankLines = ( (23 - lines.size()) / 2 );
 	int lowerBlankLines = (23 - lines.size() - upperBlankLines);
 
@@ -112,7 +112,7 @@ string OutputScreens::printTextWithInputScreen(const vector<string>& lines) {
 		for (int j = 0; j < rightBlankChars; j++) {
 			cout << " ";
 		}
-		cout << "|" << endl;
+		cout << "|" << "\n";
 	}
 
 	for (int i = 0; i < (lowerBlankLines - 1); i++) {
@@ -129,7 +129,7 @@ string OutputScreens::printTextWithInputScreen(const vector<string>& lines) {
 	return answer;
 }
 
-char OutputScreens::printTextWithCharInputScreen(const vector<string>& lines){
+char OutputScreens::printTextScreenWithCharInput(const vector<string>& lines){
     int upperBlankLines = ( (23 - lines.size()) / 2 );
 	int lowerBlankLines = (23 - lines.size() - upperBlankLines);
 
@@ -151,7 +151,7 @@ char OutputScreens::printTextWithCharInputScreen(const vector<string>& lines){
 		for (int j = 0; j < rightBlankChars; j++) {
 			cout << " ";
 		}
-		cout << "|" << endl;
+		cout << "|" << "\n";
 	}
 
 	for (int i = 0; i < (lowerBlankLines - 1); i++) {
