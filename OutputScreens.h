@@ -11,13 +11,16 @@ class OutputScreens{
 
         void clearScreen();
 
+        // printTextScreen
         void printTextScreen(const vector<string>& lines);
         void printTextScreenNoInput(const vector<string>& lines);
         string printTextScreenWithInput(const vector<string>& lines);
         char printTextScreenWithCharInput(const vector<string>& lines);
 
+        // printCameraScreen
         void printCameraScreen(int page, int camerasAvailable, string bottomText);
         void printCameraScreen(int page, int camerasAvailable);
         void printCameraScreen();
+        void printCameraList();
         
 };

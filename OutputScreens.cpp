@@ -3,8 +3,11 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <chrono>
+#include <thread>
 
 using namespace std;
+using namespace std::chrono;
 
 OutputScreens::OutputScreens(){ };
 
@@ -432,4 +435,364 @@ void OutputScreens::printCameraScreen(int page, int camerasAvailable){
 }
 void OutputScreens::printCameraScreen(){
     printCameraScreen(1, 4, "SELECT A CAMERA");
+}
+void OutputScreens::printCameraList(){ // list of camera options at start of game
+    // welcome animation
+    for (int i=0; i<2; i++)
+	{
+        clearScreen();
+        for (int j = 0; j < 11; j++){ cout << " \n"; }
+		cout << "                           Welcome To The ___________" << "\n" << "                           Surveillance System!" << "\n";
+		for (int j = 0; j < 11; j++){ cout << " \n"; }
+        this_thread::sleep_for(0.8s);
+
+        clearScreen();
+		for (int j = 0; j < 11; j++){ cout << " \n"; }
+		cout << "                           Welcome To The ___________" << "\n" << "                           Surveillance System! ." << "\n";
+		for (int j = 0; j < 11; j++){ cout << " \n"; }
+        this_thread::sleep_for(0.8s);
+
+        clearScreen();
+		for (int j = 0; j < 11; j++){ cout << " \n"; }
+		cout << "                           Welcome To The ___________" << "\n" << "                           Surveillance System! . ." << "\n";
+		for (int j = 0; j < 11; j++){ cout << " \n"; }
+        this_thread::sleep_for(0.8s);
+        
+        clearScreen();
+		for (int j = 0; j < 11; j++){ cout << " \n"; }
+		cout << "                           Welcome To The ___________" << "\n" << "                           Surveillance System! . . ." << "\n";
+		for (int j = 0; j < 11; j++){ cout << " \n"; }
+        this_thread::sleep_for(0.8s);
+	}
+
+    // list animation
+    clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n";
+	for (int j = 0; j < 14; j++){ cout << " \n"; }
+    this_thread::sleep_for(0.6s);
+
+    clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1]| " << "\n";
+	for (int j = 0; j < 12; j++){ cout << " \n"; }
+    this_thread::sleep_for(0.1s);
+
+    clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] F| " << "\n";
+	for (int j = 0; j < 12; j++){ cout << " \n"; }
+    this_thread::sleep_for(0.2s);
+
+	clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Fl| " << "\n";
+	for (int j = 0; j < 12; j++){ cout << " \n"; }
+	this_thread::sleep_for(0.1s);
+
+	clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Fli| " << "\n";
+	for (int j = 0; j < 12; j++){ cout << " \n"; }
+	this_thread::sleep_for(0.1s);
+
+	clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Flig| " << "\n";
+	for (int j = 0; j < 12; j++){ cout << " \n"; }
+	this_thread::sleep_for(0.2s);
+
+	clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Fligh| " << "\n";
+	for (int j = 0; j < 12; j++){ cout << " \n"; }
+	this_thread::sleep_for(0.1s);
+
+	clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Flight| " << "\n";
+	for (int j = 0; j < 12; j++){ cout << " \n"; }
+	this_thread::sleep_for(0.2s);
+
+	clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Flight D| " << "\n";
+	for (int j = 0; j < 12; j++){ cout << " \n"; }
+	this_thread::sleep_for(0.1s);
+
+	clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Flight Di| " << "\n";
+	for (int j = 0; j < 12; j++){ cout << " \n"; }
+	this_thread::sleep_for(0.1s);
+
+	clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Flight Dic| " << "\n";
+	for (int j = 0; j < 12; j++){ cout << " \n"; }
+	this_thread::sleep_for(0.7s);
+
+	clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Flight Di| " << "\n";
+	for (int j = 0; j < 12; j++){ cout << " \n"; }
+	this_thread::sleep_for(0.2s);
+
+	clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Flight D| " << "\n";
+	for (int j = 0; j < 12; j++){ cout << " \n"; }
+	this_thread::sleep_for(0.2s);
+
+	clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Flight De| " << "\n";
+	for (int j = 0; j < 12; j++){ cout << " \n"; }
+	this_thread::sleep_for(0.3s);
+
+	clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Flight Dec| " << "\n";
+	for (int j = 0; j < 12; j++){ cout << " \n"; }
+	this_thread::sleep_for(0.1s);
+
+	clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Flight Deck| " << "\n";
+	for (int j = 0; j < 12; j++){ cout << " \n"; }
+	this_thread::sleep_for(0.2s);
+
+	clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Flight Deck" << "\n" << "                               [2]|" << "\n";
+	for (int j = 0; j < 11; j++){ cout << " \n"; }
+	this_thread::sleep_for(0.1s);
+
+	clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Flight Deck" << "\n" << "                               [2] |" << "\n";
+	for (int j = 0; j < 11; j++){ cout << " \n"; }
+	this_thread::sleep_for(0.1s);
+
+	clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Flight Deck" << "\n" << "                               [2] C|" << "\n";
+	for (int j = 0; j < 11; j++){ cout << " \n"; }
+	this_thread::sleep_for(0.1s);
+
+	clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Flight Deck" << "\n" << "                               [2] Cr|" << "\n";
+	for (int j = 0; j < 11; j++){ cout << " \n"; }
+	this_thread::sleep_for(0.1s);
+
+	clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Flight Deck" << "\n" << "                               [2] Cre|" << "\n";
+	for (int j = 0; j < 11; j++){ cout << " \n"; }
+	this_thread::sleep_for(0.2s);
+
+	clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Flight Deck" << "\n" << "                               [2] Crew|" << "\n";
+	for (int j = 0; j < 11; j++){ cout << " \n"; }
+	this_thread::sleep_for(0.1s);
+
+    clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Flight Deck" << "\n" << "                               [2] Crew |" << "\n";
+	for (int j = 0; j < 11; j++){ cout << " \n"; }
+	this_thread::sleep_for(0.1s);
+    
+	clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Flight Deck" << "\n" << "                               [2] Crew Q|" << "\n";
+	for (int j = 0; j < 11; j++){ cout << " \n"; }
+	this_thread::sleep_for(0.1s);
+
+	clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Flight Deck" << "\n" << "                               [2] Crew Qu|" << "\n";
+	for (int j = 0; j < 11; j++){ cout << " \n"; }
+	this_thread::sleep_for(0.2s);
+
+	clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Flight Deck" << "\n" << "                               [2] Crew Qua|" << "\n";
+	for (int j = 0; j < 11; j++){ cout << " \n"; }
+	this_thread::sleep_for(0.1s);
+
+	clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Flight Deck" << "\n" << "                               [2] Crew Quar|" << "\n";
+	for (int j = 0; j < 11; j++){ cout << " \n"; }
+	this_thread::sleep_for(0.1s);
+
+	clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Flight Deck" << "\n" << "                               [2] Crew Quart|" << "\n";
+	for (int j = 0; j < 11; j++){ cout << " \n"; }
+	this_thread::sleep_for(0.1s);
+
+	clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Flight Deck" << "\n" << "                               [2] Crew Quarte|" << "\n";
+	for (int j = 0; j < 11; j++){ cout << " \n"; }
+	this_thread::sleep_for(0.2s);
+
+	clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Flight Deck" << "\n" << "                               [2] Crew Quarter|" << "\n";
+	for (int j = 0; j < 11; j++){ cout << " \n"; }
+	this_thread::sleep_for(0.1s);
+
+	clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Flight Deck" << "\n" << "                               [2] Crew Quarters|" << "\n";
+	for (int j = 0; j < 11; j++){ cout << " \n"; }
+	this_thread::sleep_for(0.2s);
+
+	clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Flight Deck" << "\n" << "                               [2] Crew Quarters" << "\n" << "                               [3]|" << "\n";
+	for (int j = 0; j < 10; j++){ cout << " \n"; }
+	this_thread::sleep_for(0.1s);
+
+	clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Flight Deck" << "\n" << "                               [2] Crew Quarters" << "\n" << "                               [3] B|" << "\n";
+	for (int j = 0; j < 10; j++){ cout << " \n"; }
+	this_thread::sleep_for(0.1s);
+
+	clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Flight Deck" << "\n" << "                               [2] Crew Quarters" << "\n" << "                               [3] Br|" << "\n";
+	for (int j = 0; j < 10; j++){ cout << " \n"; }
+	this_thread::sleep_for(0.2s);
+
+	clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Flight Deck" << "\n" << "                               [2] Crew Quarters" << "\n" << "                               [3] Bri|" << "\n";
+	for (int j = 0; j < 10; j++){ cout << " \n"; }
+	this_thread::sleep_for(0.2s);
+
+	clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Flight Deck" << "\n" << "                               [2] Crew Quarters" << "\n" << "                               [3] Brie|" << "\n";
+	for (int j = 0; j < 10; j++){ cout << " \n"; }
+	this_thread::sleep_for(0.1s);
+
+	clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Flight Deck" << "\n" << "                               [2] Crew Quarters" << "\n" << "                               [3] Brief|" << "\n";
+	for (int j = 0; j < 10; j++){ cout << " \n"; }
+	this_thread::sleep_for(0.1s);
+
+	clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Flight Deck" << "\n" << "                               [2] Crew Quarters" << "\n" << "                               [3] Briefi|" << "\n";
+	for (int j = 0; j < 10; j++){ cout << " \n"; }
+	this_thread::sleep_for(0.1s);
+
+	clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Flight Deck" << "\n" << "                               [2] Crew Quarters" << "\n" << "                               [3] Briefin|" << "\n";
+	for (int j = 0; j < 10; j++){ cout << " \n"; }
+	this_thread::sleep_for(0.2s);
+
+	clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Flight Deck" << "\n" << "                               [2] Crew Quarters" << "\n" << "                               [3] Briefing|" << "\n";
+	for (int j = 0; j < 10; j++){ cout << " \n"; }
+	this_thread::sleep_for(0.1s);
+
+	clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Flight Deck" << "\n" << "                               [2] Crew Quarters" << "\n" << "                               [3] Briefing |" << "\n";
+	for (int j = 0; j < 10; j++){ cout << " \n"; }
+	this_thread::sleep_for(0.1s);
+
+	clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Flight Deck" << "\n" << "                               [2] Crew Quarters" << "\n" << "                               [3] Briefing R|" << "\n";
+	for (int j = 0; j < 10; j++){ cout << " \n"; }
+	this_thread::sleep_for(0.2s);
+
+	clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Flight Deck" << "\n" << "                               [2] Crew Quarters" << "\n" << "                               [3] Briefing Ro|" << "\n";
+	for (int j = 0; j < 10; j++){ cout << " \n"; }
+	this_thread::sleep_for(0.1s);
+
+	clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Flight Deck" << "\n" << "                               [2] Crew Quarters" << "\n" << "                               [3] Briefing Roo|" << "\n";
+	for (int j = 0; j < 10; j++){ cout << " \n"; }
+	this_thread::sleep_for(0.1s);
+
+	clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Flight Deck" << "\n" << "                               [2] Crew Quarters" << "\n" << "                               [3] Briefing Room|" << "\n";
+	for (int j = 0; j < 10; j++){ cout << " \n"; }
+	this_thread::sleep_for(0.1s);
+
+	clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Flight Deck" << "\n" << "                               [2] Crew Quarters" << "\n" << "                               [3] Briefing Room" << "\n" << "                                  [4]|" << "\n";
+	for (int j = 0; j < 9; j++){ cout << " \n"; }
+	this_thread::sleep_for(0.1s);
+
+	clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Flight Deck" << "\n" << "                               [2] Crew Quarters" << "\n" << "                               [3] Briefing Room" << "\n" << "                                  [4] |" << "\n";
+	for (int j = 0; j < 9; j++){ cout << " \n"; }
+	this_thread::sleep_for(0.3s);
+
+	clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Flight Deck" << "\n" << "                               [2] Crew Quarters" << "\n" << "                               [3] Briefing Room" << "\n" << "                                  [4] A|" << "\n";
+	for (int j = 0; j < 9; j++){ cout << " \n"; }
+	this_thread::sleep_for(0.1s);
+
+	clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Flight Deck" << "\n" << "                               [2] Crew Quarters" << "\n" << "                               [3] Briefing Room" << "\n" << "                                  [4] Ai|" << "\n";
+	for (int j = 0; j < 9; j++){ cout << " \n"; }
+	this_thread::sleep_for(0.2s);
+
+	clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Flight Deck" << "\n" << "                               [2] Crew Quarters" << "\n" << "                               [3] Briefing Room" << "\n" << "                                  [4] Air|" << "\n";
+	for (int j = 0; j < 9; j++){ cout << " \n"; }
+	this_thread::sleep_for(0.1s);
+
+	clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Flight Deck" << "\n" << "                               [2] Crew Quarters" << "\n" << "                               [3] Briefing Room" << "\n" << "                                  [4] Airl|" << "\n";
+	for (int j = 0; j < 9; j++){ cout << " \n"; }
+	this_thread::sleep_for(0.1s);
+
+	clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Flight Deck" << "\n" << "                               [2] Crew Quarters" << "\n" << "                               [3] Briefing Room" << "\n" << "                                  [4] Airlo|" << "\n";
+	for (int j = 0; j < 9; j++){ cout << " \n"; }
+	this_thread::sleep_for(0.1s);
+
+	clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Flight Deck" << "\n" << "                               [2] Crew Quarters" << "\n" << "                               [3] Briefing Room" << "\n" << "                                  [4] Airloc|" << "\n";
+	for (int j = 0; j < 9; j++){ cout << " \n"; }
+	this_thread::sleep_for(0.2s);
+
+	clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Flight Deck" << "\n" << "                               [2] Crew Quarters" << "\n" << "                               [3] Briefing Room" << "\n" << "                                  [4] Airlock|" << "\n";
+	for (int j = 0; j < 9; j++){ cout << " \n"; }
+	this_thread::sleep_for(0.1s);
+
+	clearScreen();
+    for (int j = 0; j < 9; j++){ cout << " \n"; }
+	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Flight Deck" << "\n" << "                               [2] Crew Quarters" << "\n" << "                               [3] Briefing Room" << "\n" << "                                  [4] Airlock" << "\n";
+	for (int j = 0; j < 9; j++){ cout << " \n"; }
+	this_thread::sleep_for(0.3s);
 }

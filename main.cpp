@@ -20,24 +20,9 @@ int main() {
 	outscr.printTextScreen({ "INSERT TITLE HERE", "By Miles Crane and Trevor Past", "For the Fall 2026 MSU Game Jam", "", "PRESS ENTER TO CONTINUE"});
 	outscr.printTextScreen({"HOW TO INTERACT WITH GAME:", "", "Options for input will be shown on screen in between [square brackets].", "If you are given an \"[O]ption\", type \"O\" and press Enter to choose it.", "", "When there are no options shown on screen, press Enter to continue."});
 
-	/*outscr.printCameraScreen(1, 8);
+	outscr.printCameraList();
 	cin.ignore();
-	outscr.printCameraScreen(1, 7);
-	cin.ignore();
-	outscr.printCameraScreen(1, 6);
-	cin.ignore();
-	outscr.printCameraScreen(1, 5);
-	cin.ignore();
-	outscr.printCameraScreen(1, 4);
-	cin.ignore();
-	outscr.printCameraScreen(1, 3);
-	cin.ignore();
-	outscr.printCameraScreen(1, 2);
-	cin.ignore();
-	outscr.printCameraScreen(1, 1);
-	cin.ignore();
-	outscr.printCameraScreen(1, 0);
-	cin.ignore();*/
+
 
 	bool flag = true;
     while (flag == true)
@@ -57,7 +42,9 @@ int main() {
             cin.ignore(streamsize(), '\n');
         }
     }
-	for (int i=0; i<2; i++)
+	
+	
+	/*for (int i=0; i<2; i++)
 	{
 		outscr.printTextScreenNoInput({"Welcome To The ___________", "Surveillance System!"});
 		cout << endl;
@@ -236,7 +223,7 @@ int main() {
 	this_thread::sleep_for(0.1s);
 	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck", "2. Crew Quarters ", "3. Briefing Room", "4. Airlock  "});
 	cout << endl;
-	this_thread::sleep_for(0.3s);
+	this_thread::sleep_for(0.3s);*/
 
 
 
