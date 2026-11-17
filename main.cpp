@@ -16,12 +16,7 @@ using namespace std::chrono_literals;
 
 int main() {
 	#ifdef _WIN32
-    // Enable ANSI escape codes on Windows 10/11
-    HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
-    DWORD dwMode = 0;
-    if (GetConsoleMode(hOut, &dwMode)) {
-        SetConsoleMode(hOut, dwMode | ENABLE_VIRTUAL_TERMINAL_PROCESSING);
-    }
+    
 #endif
     cout << "\033[2J\033[H\033[?25l" << flush;
 	//cout << "\e[8;25;80t"; // resize terminal window to 80 x 25 characters
