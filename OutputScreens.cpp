@@ -5,19 +5,54 @@
 #include <vector>
 #include <chrono>
 #include <thread>
-
+#ifdef __APPLE__
+#include <termios.h>
+#include <unistd.h>
+#endif
 using namespace std;
 using namespace std::chrono;
 
-OutputScreens::OutputScreens(){ };
+bool echo_altered = false;//safety flag prevents overwriting
 
+OutputScreens::OutputScreens(){ };
+OutputScreens::~OutputScreens(){ if (echo_altered) {
+            setEcho(true);
+        }};
+        
+    termios saved_tio;
+ void OutputScreens::setEcho(bool echoState) {
+    #ifdef __APPLE__
+        if (!echoState) {
+            if (!echo_altered) {
+                tcgetattr(STDIN_FILENO, &saved_tio);//backup terminal settings
+                echo_altered = true;
+            }
+            termios new_tio = saved_tio;
+            cout << "\033[?25l" << flush;
+            new_tio.c_lflag &= ~ECHO;//disable echo
+            tcsetattr(STDIN_FILENO, TCSANOW, &new_tio);
+        } else if (echo_altered) {
+            // Restore terminal settings
+            cout << "\033[?25h" << flush;
+            tcsetattr(STDIN_FILENO, TCSANOW, &saved_tio);
+            echo_altered = false;
+        }
+        #endif
+    }
+    void OutputScreens::flushPendingKeystrokes()
+    {
+    #ifdef __APPLE__
+    tcflush(STDIN_FILENO, TCIFLUSH);
+    #endif
+    }
 void OutputScreens::clearScreen(){
 	//for (int i = 0; i < 200; i++){
 	//	cout << " " << endl;
 	//}
 	
 	// \033[ indicates this is a format sequence
-	// 2J means clear visible screen, 3J clears everything from the scroll buffer, 999;1H moves cursor to bottom of screen  
+	// 2J means clear visible screen, 3J clears everything from the scroll buffer, 999;1H moves cursor to bottom of screen 
+    flushPendingKeystrokes(); 
     std::cout << "\033[2J\033[3J\033[999;1H" << std::flush;
 
 
@@ -123,8 +158,9 @@ string OutputScreens::printTextScreenWithInput(const vector<string>& lines) {
 	}
 
 	cout << "--------------------------------------------------------------------------------" << endl;
-
+    flushPendingKeystrokes();
 	string answer = "";
+   
 	getline(cin, answer);
 
 	clearScreen();
