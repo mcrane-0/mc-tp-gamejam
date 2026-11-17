@@ -5,6 +5,9 @@
 #include <vector>
 #include <chrono>
 #include <thread>
+#ifdef _WIN32
+#include <windows.h>
+#endif
 #ifdef __APPLE__
 #include <termios.h>
 #include <unistd.h>
@@ -94,7 +97,7 @@ void OutputScreens::printTextScreen(const vector<string>& lines) {
 }
 
 void OutputScreens::printTextScreenNoInput(const vector<string>& lines){
-	clearScreen();
+	//clearScreen();
     int upperBlankLines = ( (23 - lines.size()) / 2 );
 	int lowerBlankLines = (23 - lines.size() - upperBlankLines);
 
@@ -126,6 +129,17 @@ void OutputScreens::printTextScreenNoInput(const vector<string>& lines){
 	}
 
 	cout << "-------------------------------------------------------------------------------" << flush;
+    #ifdef _WIN32
+    // Move cursor to top left without wiping the screen
+    HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+    COORD topLeft = {0, 0};
+    SetConsoleCursorPosition(hOut, topLeft);
+
+    // Write to console buffer
+    DWORD charsWritten = 0;
+    WriteConsoleA(hOut, frame.c_str(), static_cast<DWORD>(frame.size()), &charsWritten, nullptr);
+    #endif
+
 }
 
 string OutputScreens::printTextScreenWithInput(const vector<string>& lines) {
