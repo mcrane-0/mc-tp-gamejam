@@ -19,9 +19,9 @@ int main() {
 	outscr.printTextScreen({ "PLEASE ADJUST TERMINAL SIZE TO 80 x 25 CHARACTERS", "", "PRESS ENTER TO CONTINUE"});
 	outscr.printTextScreen({ "INSERT TITLE HERE", "By Miles Crane and Trevor Past", "For the Fall 2026 MSU Game Jam", "", "PRESS ENTER TO CONTINUE"});
 	outscr.printTextScreen({"HOW TO INTERACT WITH GAME:", "", "Options for input will be shown on screen in between [square brackets].", "If you are given an \"[O]ption\", type \"O\" and press Enter to choose it.", "", "When there are no options shown on screen, press Enter to continue."});
-	outscr.setEcho(false);
-	outscr.printCameraList();
-	outscr.setEcho(true);
+	//outscr.setEcho(false);
+	//outscr.printCameraList();
+	//outscr.setEcho(true);
 
 	cin.ignore();
 
@@ -45,8 +45,8 @@ int main() {
         }
     }
 	
-	
-	/*for (int i=0; i<2; i++)
+	outscr.setEcho(false);
+	for (int i=0; i<2; i++)
 	{
 		outscr.printTextScreenNoInput({"Welcome To The ___________", "Surveillance System!"});
 		cout << endl;
@@ -62,82 +62,82 @@ int main() {
 		this_thread::sleep_for(0.8s);
 	}
 	outscr.printTextScreenNoInput({"Please select a camera to view:"});
-	cout << endl;
+	cout << "\n";
 	this_thread::sleep_for(0.6s);
 	outscr.printTextScreenNoInput({"Please select a camera to view:", "1.| "});
-	cout << endl;
+	cout << "\n";
 	this_thread::sleep_for(0.1s);
 	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. F| "});
-	cout << endl;
+	cout << "\n";
 	this_thread::sleep_for(0.2s);
 	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Fl|"});
-	cout << endl;
+	cout << "\n";
 	this_thread::sleep_for(0.1s);
 	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Fli| "});
-	cout << endl;
+	cout << "\n";
 	this_thread::sleep_for(0.1s);
 	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flig|"});
-	cout << endl;
+	cout << "\n";
 	this_thread::sleep_for(0.2s);
 	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Fligh| "});
-	cout << endl;
+	cout << "\n";
 	this_thread::sleep_for(0.1s);
 	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight|"});
-	cout << endl;
+	cout << "\n";
 	this_thread::sleep_for(0.2s);
 	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight D|"});
-	cout << endl;
+	cout << "\n";
 	this_thread::sleep_for(0.1s);
 	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Di| "});
-	cout << endl;
+	cout << "\n";
 	this_thread::sleep_for(0.1s);
 	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Dic|"});
-	cout << endl;
+	cout << "\n";
 	this_thread::sleep_for(0.7s);
 	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Di| "});
-	cout << endl;
+	cout << "\n";
 	this_thread::sleep_for(0.2s);
 	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight D|"});
-	cout << endl;
+	cout << "\n";
 	this_thread::sleep_for(0.2s);
 	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight De| "});
-	cout << endl;
+	cout << "\n";
 	this_thread::sleep_for(0.3s);
 	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Dec|"});
-	cout << endl;
+	cout << "\n";
 	this_thread::sleep_for(0.1s);
 	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck|"});
-	cout << endl;
+	cout << "\n";
 	this_thread::sleep_for(0.2s);
 	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck", "2.|"});
-	cout << endl;
+	cout << "\n";
 	this_thread::sleep_for(0.1s);
 	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck", "2. | "});
-	cout << endl;
+	cout << "\n";
 	this_thread::sleep_for(0.1s);
 	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck", "2. C|"});
-	cout << endl;
+	//cout << endl;
 	this_thread::sleep_for(0.1s);
 	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck", "2. Cr| "});
-	cout << endl;
+	//cout << endl;
 	this_thread::sleep_for(0.1s);
 	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck", "2. Cre|"});
-	cout << endl;
+	//cout << endl;
 	this_thread::sleep_for(0.2s);
 	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck", "2. Crew| "});
-	cout << endl;
+	//cout << endl;
 	this_thread::sleep_for(0.1s);
 	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck", "2. Crew | "});
-	cout << endl;
+	//cout << endl;
 	this_thread::sleep_for(0.1s);
 	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck", "2. Crew Q|"});
-	cout << endl;
+	//cout << endl;
 	this_thread::sleep_for(0.2s);
 	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck", "2. Crew Qu| "});
-	cout << endl;
+	//cout << endl;
 	this_thread::sleep_for(0.1s);
 	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck", "2. Crew Qua|"});
-	cout << endl;
+	//cout << endl;
 	this_thread::sleep_for(0.1s);
 	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck", "2. Crew Quar|"});
 	cout << endl;
@@ -225,7 +225,8 @@ int main() {
 	this_thread::sleep_for(0.1s);
 	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck", "2. Crew Quarters ", "3. Briefing Room", "4. Airlock  "});
 	cout << endl;
-	this_thread::sleep_for(0.3s);*/
+	this_thread::sleep_for(0.3s);
+	outscr.setEcho(true);
 
 
 
