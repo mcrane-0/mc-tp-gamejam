@@ -18,8 +18,9 @@ OutputScreens::OutputScreens(){ };
 OutputScreens::~OutputScreens(){ if (echo_altered) {
             setEcho(true);
         }};
-        
-    termios saved_tio;
+        #ifdef __APPLE__
+termios saved_tio;
+#endif
  void OutputScreens::setEcho(bool echoState) {
     #ifdef __APPLE__
         if (!echoState) {
