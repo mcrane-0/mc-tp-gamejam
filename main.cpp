@@ -5,6 +5,7 @@
 #include <thread>
 #include "OutputScreens.h"
 #include "Player.h"
+#include "Animation.h"
 #ifdef _WIN32
 #include <windows.h>
 #endif
@@ -15,13 +16,23 @@ using namespace std::chrono_literals;
 
 
 int main() {
+	//enable ansi sequences in windows
 	#ifdef _WIN32
-    
+    HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);//finds output stream
+    if (hOut != INVALID_HANDLE_VALUE) {//checks if its the console/a valid output stream
+        DWORD dwMode = 0;//the rest is weird windows OS settings stuff
+        if (GetConsoleMode(hOut, &dwMode)) {
+            dwMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
+            SetConsoleMode(hOut, dwMode);
+        }
+    }
 #endif
     cout << "\033[2J\033[H\033[?25l" << flush;
-	//cout << "\e[8;25;80t"; // resize terminal window to 80 x 25 characters
+	//cout << "\e[8;25;80t" << flush; // resize terminal window to 80 x 25 characters
 	Player player;
 	OutputScreens outscr;
+	Animation ani;
+	ani.centeredTyping({"this is a test", "please work", "thanks."});
 
 	outscr.printTextScreen({ "PLEASE ADJUST TERMINAL SIZE TO 80 x 25 CHARACTERS", "", "PRESS ENTER TO CONTINUE"});
 	outscr.printTextScreen({ "INSERT TITLE HERE", "By Miles Crane and Trevor Past", "For the Fall 2026 MSU Game Jam", "", "PRESS ENTER TO CONTINUE"});
