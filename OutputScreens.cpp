@@ -130,14 +130,7 @@ void OutputScreens::printTextScreenNoInput(const vector<string>& lines){
 
 	cout << "-------------------------------------------------------------------------------" << flush;
     #ifdef _WIN32
-    // Move cursor to top left without wiping the screen
-    HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
-    COORD topLeft = {0, 0};
-    SetConsoleCursorPosition(hOut, topLeft);
-
-    // Write to console buffer
-    DWORD charsWritten = 0;
-    WriteConsoleA(hOut, frame.c_str(), static_cast<DWORD>(frame.size()), &charsWritten, nullptr);
+   
     #endif
 
 }
