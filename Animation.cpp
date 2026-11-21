@@ -124,9 +124,20 @@ Animation::~Animation(){ if (echo_altered) {
             }
             frame += string(79, '-');
             cout << frame << flush;
-            this_thread::sleep_for(.2s);
+            this_thread::sleep_for(0.1s);
         }
         flushPendingKeystrokes();
         setEcho(true);
+        this_thread::sleep_for(1s);
+        cout << "\033[H" << "\n| " << "(PRESS ENTER TO CONTINUE)";
+        cin.ignore();
         cout << "\033[?1049l" << flush;
+        
+    
+    
     }
+
+    //void Animation::centeredTyping(const vector<string>& lines)
+    //{
+    //    Animation::centeredTyping(lines);
+    //}

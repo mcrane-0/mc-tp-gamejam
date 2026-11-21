@@ -8,12 +8,32 @@
 #include "Animation.h"
 #ifdef _WIN32
 #include <windows.h>
+#elif defined(__APPLE__) || defined(__linux__)
+#include <termios.h>
+#include <unistd.h>
+#include <cstdio>
 #endif
+
 
 using namespace std;
 using namespace std::chrono;
 using namespace std::chrono_literals;
 
+	#if defined(__APPLE__) || defined(__linux__)
+	char _getch() 
+	{
+    struct termios savedTerm, tempTerm;
+    char ch;
+
+    tcgetattr(STDIN_FILENO, &savedTerm);
+    tempTerm = savedTerm;//copy settings into temp settings
+    tempTerm.c_lflag &= ~(ICANON | ECHO); //turn off line buffering and echo
+    tcsetattr(STDIN_FILENO, TCSANOW, &tempTerm);//apply temp settings
+    ch = getchar();//get char
+    tcsetattr(STDIN_FILENO, TCSANOW, &savedTerm);//restore original settings
+    return ch;
+}
+#endif
 
 int main() {
 	//enable ansi sequences in windows
@@ -26,13 +46,15 @@ int main() {
             SetConsoleMode(hOut, dwMode);
         }
     }
-#endif
+	#endif
     cout << "\033[2J\033[H\033[?25l" << flush;
 	//cout << "\e[8;25;80t" << flush; // resize terminal window to 80 x 25 characters
 	Player player;
 	OutputScreens outscr;
 	Animation ani;
 	ani.centeredTyping({"this is a test", "please work", "thanks."});
+	char c = _getch();
+	cout << c << flush;
 
 	outscr.printTextScreen({ "PLEASE ADJUST TERMINAL SIZE TO 80 x 25 CHARACTERS", "", "PRESS ENTER TO CONTINUE"});
 	outscr.printTextScreen({ "INSERT TITLE HERE", "By Miles Crane and Trevor Past", "For the Fall 2026 MSU Game Jam", "", "PRESS ENTER TO CONTINUE"});
@@ -62,7 +84,10 @@ int main() {
             cin.ignore(streamsize(), '\n');
         }
     }
+
+	ani.centeredTyping({"Welcome To The ___________", "Surveillance System!"});
 	
+	/*
 	outscr.setEcho(false);
 	for (int i=0; i<2; i++)
 	{
@@ -245,7 +270,7 @@ int main() {
 	cout << endl;
 	this_thread::sleep_for(0.3s);
 	outscr.setEcho(true);
-
+	*/
 
 
 	
