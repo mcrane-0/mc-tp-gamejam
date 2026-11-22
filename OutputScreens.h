@@ -2,6 +2,7 @@
 
 #include <string>
 #include <vector>
+
 #ifdef __APPLE__
 #include <termios.h>
 #include <unistd.h>
@@ -17,6 +18,8 @@ class OutputScreens{
 
         void clearScreen();
         void flushPendingKeystrokes();
+        void resizeConsole();
+
         // printTextScreen
         void printTextScreen(const vector<string>& lines);
         void printTextScreenNoInput(const vector<string>& lines);
@@ -28,5 +31,7 @@ class OutputScreens{
         void printCameraScreen(int page, int camerasAvailable);
         void printCameraScreen();
         void printCameraList();
+
+        void printBreakerBox(bool switches[6]);
         
 };

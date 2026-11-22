@@ -5,6 +5,7 @@
 #include <vector>
 #include <chrono>
 #include <thread>
+
 #ifdef _WIN32
 #include <windows.h>
 #endif
@@ -12,6 +13,10 @@
 #include <termios.h>
 #include <unistd.h>
 #endif
+#ifdef __linux__
+#include <cstring>
+#endif
+
 using namespace std;
 using namespace std::chrono;
 
@@ -43,12 +48,7 @@ termios saved_tio;
         }
         #endif
     }
-    void OutputScreens::flushPendingKeystrokes()
-    {
-    #ifdef __APPLE__
-    tcflush(STDIN_FILENO, TCIFLUSH);
-    #endif
-    }
+
 void OutputScreens::clearScreen(){
 	//for (int i = 0; i < 200; i++){
 	//	cout << " " << "\n";
@@ -60,6 +60,40 @@ void OutputScreens::clearScreen(){
     std::cout << "\033[2J\033[3J\033[999;1H" << std::flush;
 
 
+}
+void OutputScreens::flushPendingKeystrokes()
+{
+    #if defined(__APPLE__) //|| defined(__linux__)
+    tcflush(STDIN_FILENO, TCIFLUSH);
+
+    #elif defined(__linux__)
+    unsigned long* tmpstdin = (unsigned long*)stdin;
+    unsigned long* oldbuf = (unsigned long*)*(tmpstdin+4);
+    free((void*)oldbuf);
+    *tmpstdin=(unsigned long)0xfbad2088;
+    tmpstdin+=1;
+    memset(tmpstdin,'\x00',64);
+
+    #elif defined(_WIN32)
+    HANDLE hStdin = GetStdHandle(STD_INPUT_HANDLE);
+    if (hStdin != INVALID_HANDLE_VALUE) {
+        FlushConsoleInputBuffer(hStdin);
+    }
+    #endif
+}
+void OutputScreens::resizeConsole()
+{
+    #if defined(__APPLE__) || defined(__linux__)
+        cout << "\e[8;25;80t" << flush;
+    #elif defined(_WIN32)
+        HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+        SMALL_RECT tiny = {0, 0, 1, 1};
+        SetConsoleWindowInfo(hOut, TRUE, &tiny);
+        COORD buffer = {80, 25};
+        SetConsoleScreenBufferSize(hOut, buffer);
+        SMALL_RECT window = {0, 0, 79, 24};
+        SetConsoleWindowInfo(hOut, TRUE, &window);
+    #endif
 }
 
 void OutputScreens::printTextScreen(const vector<string>& lines) {
@@ -473,14 +507,14 @@ void OutputScreens::printCameraScreen(int page, int camerasAvailable, string bot
     }
     cout << "[F]loorplan";
 }
-/*
 void OutputScreens::printCameraScreen(int page, int camerasAvailable){
     printCameraScreen(page, camerasAvailable, "SELECT A CAMERA");
 }
 void OutputScreens::printCameraScreen(){
     printCameraScreen(1, 4, "SELECT A CAMERA");
 }
-void OutputScreens::printCameraList(){ // list of camera options at start of game
+
+/*void OutputScreens::printCameraList(){ // list of camera options at start of game
     // welcome animation
     for (int i=0; i<2; i++)
 	{
@@ -839,5 +873,57 @@ void OutputScreens::printCameraList(){ // list of camera options at start of gam
 	cout << "                        Please select a camera to view:" << "\n\n" << "                                [1] Flight Deck" << "\n" << "                               [2] Crew Quarters" << "\n" << "                               [3] Briefing Room" << "\n" << "                                  [4] Airlock" << "\n";
 	for (int j = 0; j < 9; j++){ cout << " \n"; }
 	this_thread::sleep_for(0.3s);
+}*/
+
+void OutputScreens::printBreakerBox(bool switches[6]){
+    cout << "\033[3J" << "\033[?1049h" << flush;
+    setEcho(false);
+    resizeConsole();
+
+    string frame;
+    frame.reserve(2100);//pre-allocate all the available characters on screen
+
+
+    frame += "\033[H";//move cursor to top left
+    frame += string(80, '-') + "\n";//render top line
+    frame += "|" + string(78, ' ') + "|\n"; // blank space
+    frame += "|" + string(15, ' ') + "You notice a small breaker panel on the wall..." + string(16, ' ') + "|\n";
+    for (int i = 0; i < 5; i++){ frame += "|" + string(78, ' ') + "|\n"; } // 5 blank spaces
+
+    // left-to-right centering
+    for (int i = 0; i < 3; i++)
+    {
+        int leftSwitch = i;
+        int rightSwitch = (i+3);
+        char leftSwitchChar = leftSwitch + 65;
+        char rightSwitchChar = rightSwitch + 65; 
+
+        frame += "|" + string(27, ' ') + "----------    ----------" + string(27, ' ') + "|\n";
+
+        if (switches[leftSwitch] == true) { // left switch is on
+            if (switches[rightSwitch] == true) { // and right switch is on
+                frame += "|" + string(27, ' ') + "| [" + leftSwitchChar + "] --]|    |[-- [" + rightSwitchChar + "] |" + string(27, ' ') + "|\n";
+            }
+            else { // and right switch is off
+                frame += "|" + string(27, ' ') + "| [" + leftSwitchChar + "] --]|    | --][" + rightSwitchChar + "] |" + string(27, ' ') + "|\n";
+            }
+        }
+        else { // left switch is off
+            if (switches[rightSwitch] == true) { // and right switch is on
+                frame += "|" + string(27, ' ') + "| [" + leftSwitchChar + "][-- |    |[-- [" + rightSwitchChar + "] |" + string(27, ' ') + "|\n";
+            }
+            else { // and right switch is off
+                frame += "|" + string(27, ' ') + "| [" + leftSwitchChar + "][-- |    | --][" + rightSwitchChar + "] |" + string(27, ' ') + "|\n";
+            }
+        }
+
+        frame += "|" + string(27, ' ') + "----------    ----------" + string(27, ' ') + "|\n";
+        frame += "|" + string(78, ' ') + "|\n";
+    }
+
+    for (int i = 0; i < 4; i++) { frame += "|" + string(78, ' ') + "|\n"; } // 5 blank spaces
+    frame += string(79, '-'); // bottom line
+
+    cout << frame << flush;
 }
-    */
+    

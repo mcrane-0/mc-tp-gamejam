@@ -4,6 +4,7 @@
 #include <chrono>
 #include <thread>
 #include "Animation.h"
+
 #ifdef _WIN32
 #include <windows.h>
 #endif
@@ -11,6 +12,10 @@
 #include <termios.h>
 #include <unistd.h>
 #endif
+#ifdef __linux__
+#include <cstring>
+#endif
+
 using namespace std;
 using namespace std::chrono;
 
@@ -39,10 +44,19 @@ Animation::~Animation(){ if (echo_altered) {
         }
         #endif
     }
-     void Animation::flushPendingKeystrokes()
+    void Animation::flushPendingKeystrokes()
     {
-    #if defined(__APPLE__) || defined(__linux__)
+    #if defined(__APPLE__) //|| defined(__linux__)
     tcflush(STDIN_FILENO, TCIFLUSH);
+
+    #elif defined(__linux__)
+    unsigned long* tmpstdin = (unsigned long*)stdin;
+    unsigned long* oldbuf = (unsigned long*)*(tmpstdin+4);
+    free((void*)oldbuf);
+    *tmpstdin=(unsigned long)0xfbad2088;
+    tmpstdin+=1;
+    memset(tmpstdin,'\x00',64);
+    
     #elif defined(_WIN32)
     HANDLE hStdin = GetStdHandle(STD_INPUT_HANDLE);
     if (hStdin != INVALID_HANDLE_VALUE) {

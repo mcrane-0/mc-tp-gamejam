@@ -6,6 +6,7 @@
 #include "OutputScreens.h"
 #include "Player.h"
 #include "Animation.h"
+
 #ifdef _WIN32
 #include <windows.h>
 #elif defined(__APPLE__) || defined(__linux__)
@@ -19,9 +20,9 @@ using namespace std;
 using namespace std::chrono;
 using namespace std::chrono_literals;
 
-	#if defined(__APPLE__) || defined(__linux__)
-	char _getch() 
-	{
+#if defined(__APPLE__) || defined(__linux__)
+char _getch() 
+{
     struct termios savedTerm, tempTerm;
     char ch;
 
@@ -52,9 +53,14 @@ int main() {
 	Player player;
 	OutputScreens outscr;
 	Animation ani;
-	ani.centeredTyping({"this is a test", "please work", "thanks."});
-	char c = _getch();
-	cout << c << flush;
+
+	bool switches[6] = { true, true, true, false, false, true }; // A, B, C, D, E, F    true = ON, false = OFF
+	outscr.printBreakerBox(switches);
+	cin.ignore();
+
+	// ani.centeredTyping({"this is a test", "please work", "thanks."});
+	// char c = _getch();
+	// cout << c << flush;
 
 	outscr.printTextScreen({ "PLEASE ADJUST TERMINAL SIZE TO 80 x 25 CHARACTERS", "", "PRESS ENTER TO CONTINUE"});
 	outscr.printTextScreen({ "INSERT TITLE HERE", "By Miles Crane and Trevor Past", "For the Fall 2026 MSU Game Jam", "", "PRESS ENTER TO CONTINUE"});
