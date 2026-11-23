@@ -877,7 +877,7 @@ void OutputScreens::printCameraScreen(){
 	this_thread::sleep_for(0.3s);
 }*/
 
-void OutputScreens::printBreakerBox(bool switches[6]){
+void OutputScreens::printBreakerBox(bool switches[6], bool solved){
     cout << "\033[3J" << "\033[?1049h" << flush;
     setEcho(false);
     resizeConsole();
@@ -889,7 +889,12 @@ void OutputScreens::printBreakerBox(bool switches[6]){
     frame += "\033[H";//move cursor to top left
     frame += string(80, '-') + "\n";//render top line
     frame += "|" + string(78, ' ') + "|\n"; // blank space
-    frame += "|" + string(15, ' ') + "You notice a small breaker panel on the wall..." + string(16, ' ') + "|\n";
+    if (solved){
+        frame += "|" + string(31, ' ') + "POWER RESTORED!" + string(32, ' ') + "|\n";
+    }
+    else {
+        frame += "|" + string(15, ' ') + "You notice a small breaker panel on the wall..." + string(16, ' ') + "|\n";
+    }
     for (int i = 0; i < 5; i++){ frame += "|" + string(78, ' ') + "|\n"; } // 5 blank spaces
 
     // left-to-right centering
@@ -904,18 +909,18 @@ void OutputScreens::printBreakerBox(bool switches[6]){
 
         if (switches[leftSwitch] == true) { // left switch is on
             if (switches[rightSwitch] == true) { // and right switch is on
-                frame += "|" + string(27, ' ') + "| [" + leftSwitchChar + "] --]|    |[-- [" + rightSwitchChar + "] |" + string(27, ' ') + "|\n";
+                frame += "|" + string(27, ' ') + "| (" + leftSwitchChar + ") --]|    |[-- (" + rightSwitchChar + ") |" + string(27, ' ') + "|\n";
             }
             else { // and right switch is off
-                frame += "|" + string(27, ' ') + "| [" + leftSwitchChar + "] --]|    | --][" + rightSwitchChar + "] |" + string(27, ' ') + "|\n";
+                frame += "|" + string(27, ' ') + "| (" + leftSwitchChar + ") --]|    | --](" + rightSwitchChar + ") |" + string(27, ' ') + "|\n";
             }
         }
         else { // left switch is off
             if (switches[rightSwitch] == true) { // and right switch is on
-                frame += "|" + string(27, ' ') + "| [" + leftSwitchChar + "][-- |    |[-- [" + rightSwitchChar + "] |" + string(27, ' ') + "|\n";
+                frame += "|" + string(27, ' ') + "| (" + leftSwitchChar + ")[-- |    |[-- (" + rightSwitchChar + ") |" + string(27, ' ') + "|\n";
             }
             else { // and right switch is off
-                frame += "|" + string(27, ' ') + "| [" + leftSwitchChar + "][-- |    | --][" + rightSwitchChar + "] |" + string(27, ' ') + "|\n";
+                frame += "|" + string(27, ' ') + "| (" + leftSwitchChar + ")[-- |    | --](" + rightSwitchChar + ") |" + string(27, ' ') + "|\n";
             }
         }
 
@@ -923,9 +928,11 @@ void OutputScreens::printBreakerBox(bool switches[6]){
         frame += "|" + string(78, ' ') + "|\n";
     }
 
-    for (int i = 0; i < 4; i++) { frame += "|" + string(78, ' ') + "|\n"; } // 5 blank spaces
+    for (int i = 0; i < 3; i++) { frame += "|" + string(78, ' ') + "|\n"; } // 3 blank spaces
+    frame += "| E(x)it" + string(71, ' ') + "|\n";
     frame += string(79, '-'); // bottom line
 
     cout << frame << flush;
+    setEcho(true);
 }
     

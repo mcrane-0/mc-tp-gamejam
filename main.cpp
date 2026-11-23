@@ -54,10 +54,7 @@ int main() {
 	OutputScreens outscr;
 	Animation ani;
 
-	bool switches[6] = { true, true, true, false, false, true }; // A, B, C, D, E, F    true = ON, false = OFF
-	outscr.printBreakerBox(switches);
-	cin.ignore();
-
+	
 	// ani.centeredTyping({"this is a test", "please work", "thanks."});
 	// char c = _getch();
 	// cout << c << flush;
@@ -278,10 +275,46 @@ int main() {
 	outscr.setEcho(true);
 	*/
 
+	bool breakerSwitches[6] = { true, true, true, false, false, true }; // A, B, C, D, E, F    true = ON, false = OFF
+	char inputCh = ' ';
+	bool solved = false;
+	outscr.printBreakerBox(breakerSwitches, solved);
+	while (inputCh != 'x'){
+		inputCh = _getch();
+		switch (inputCh){
+			case ('a'):
+				breakerSwitches[0] = !(breakerSwitches[0]);
+				break;
+			case ('b'):
+				breakerSwitches[1] = !(breakerSwitches[1]);
+				break;
+			case ('c'):
+				breakerSwitches[2] = !(breakerSwitches[2]);
+				break;
+			case ('d'):
+				breakerSwitches[3] = !(breakerSwitches[3]);
+				break;
+			case ('e'):
+				breakerSwitches[4] = !(breakerSwitches[4]);
+				break;
+			case ('f'):
+				breakerSwitches[5] = !(breakerSwitches[5]);
+				break;
+		}
 
+		if ( breakerSwitches[0] && breakerSwitches[1] && breakerSwitches[2] && breakerSwitches[3] && breakerSwitches[4] && breakerSwitches[5] ){
+			solved = true;
+		}
+
+		outscr.printBreakerBox(breakerSwitches, solved);
+	}
 	
-
-
+	if (solved){
+		outscr.printCameraScreen();
+	}
+	else { // user just exited
+		ani.centeredTyping({"lol you gave up", "loser", "it's literally just breakers", "turn them on"});
+	}
 
 
 	return 0;

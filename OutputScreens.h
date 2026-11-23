@@ -32,6 +32,6 @@ class OutputScreens{
         void printCameraScreen();
         void printCameraList();
 
-        void printBreakerBox(bool switches[6]);
+        void printBreakerBox(bool switches[6], bool solved);
         
 };
