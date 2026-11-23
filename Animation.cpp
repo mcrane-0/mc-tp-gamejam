@@ -69,7 +69,7 @@ Animation::~Animation(){ if (echo_altered) {
     void Animation::resizeConsole()
     {
         #if defined(__APPLE__) || defined(__linux__)
-            cout << "\e[8;25;80t" << flush;
+            cout << "\033[8;25;80t" << flush;
         #elif defined(_WIN32)
             HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
             SMALL_RECT tiny = {0, 0, 1, 1};
