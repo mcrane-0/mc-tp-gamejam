@@ -22,5 +22,17 @@ struct termios saved_tio;
     void flushPendingKeystrokes();
     void resizeConsole();
     void centeredTyping(const vector<string>& lines);
+    void centeredTyping(const vector<string>& lines, const vector<string>& initialLines);
+    void centeredTypingNoWait(const vector<string>& lines);
+    void centeredTypingNoWait(const vector<string>& lines, const vector<string>& initialLines);
+    void centeredTypingNoWait(const vector<string>& lines, int size);
+    void centeredTypingNoWait(const vector<string>& lines, const vector<string>& initialLines, int size);
+    char centeredTypingGetChar(const vector<string>& lines, const vector<string>& initialLines);
+
+
+
+
+
+
 
 };
