@@ -30,11 +30,28 @@ Animation ani;
 
 Rooms::Rooms(){ };
 
-void Rooms::briefingRoom(){
-    ani.centeredTyping({"Papers are strewn across a large metal table.", "On the nearest edge, you spot a small blue sheet of paper."});
-    outscr.printTextScreen({"Papers are strewn across a large metal table.", "On the nearest edge, you spot a small blue sheet of paper.", "", "E(x)it     Zoom (I)n"});
-    
-    outscr.printTextScreen({"Today's Menu:", "Breakfast: coffee/green tea, sausage, pancakes and maple syrup", "Lunch: vegetable quiche with wheat flatbread", "Dinner: barbequed beef brisket.", "", "MESS HALL Hours of Operation:", "Breakfast: 06:00", "Lunch: 12:00", "Dinner: 17:00"});
+/* ASCII Colored Text
+	RED = "\033[31m";
+    GREEN = "\033[32m";
+    CYAN = "\033[36m";
+    RESET = "\033[0m";
+*/
 
+
+void Rooms::briefingRoom(){
+    ani.centeredTypingNoWait({"Papers are strewn across a large metal table.", "On the nearest edge, you spot a small blue sheet of paper."});
+    char ch;
+    while (ch != 'i' && ch != 'x')
+    {
+        ch = ani.centeredTypingGetChar({"Papers are strewn across a large metal table.", "On the nearest edge, you spot a small blue sheet of paper.", "", "E(x)it     Zoom (I)n"}, {"Papers are strewn across a large metal table.", "On the nearest edge, you spot a small blue sheet of paper.", "", "E(x)it     Zoom (I)n"});   
+    }
+    if (ch == 'i')
+    {
+        outscr.printTextScreen({"Today's Menu:", "Breakfast: coffee/green tea, sausage, pancakes and maple syrup", "Lunch: vegetable quiche with wheat flatbread", "Dinner: barbequed beef brisket.", "", "\033[31m MESS HALL\033[0m Hours of Operation:", "Breakfast: 06:00", "Lunch: 12:00", "Dinner: 17:00"});
+    }
+    else if (ch == 'x')
+    {
+        cout << "poop";
+    }
 }
 
