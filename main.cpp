@@ -3,7 +3,6 @@
 #include <vector>
 #include <chrono>
 #include <thread>
-#include "OutputScreens.h"
 #include "Player.h"
 #include "Animation.h"
 #include "Rooms.h"
@@ -59,7 +58,6 @@ int main() {
     cout << "\033[2J\033[H\033[?25l" << flush;
 	//cout << "\e[8;25;80t" << flush; // resize terminal window to 80 x 25 characters
 	Player player;
-	OutputScreens outscr;
 	Animation ani;
 	Rooms rooms;
 	GameState state;
