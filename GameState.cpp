@@ -1,4 +1,3 @@
-#pragma once
 
 #include <string>
 #include <vector>
@@ -19,7 +18,7 @@ using namespace std;
     GameState::GameState()
     {
         unlockedRooms.reserve(50);
-        unlockedRooms.emplace_back(GameState::RoomName::CrewQuarters, GameState::RoomName::BriefingRoom, GameState::RoomName::Airlock);
+        unlockedRooms = {GameState::RoomName::CrewQuarters, GameState::RoomName::BriefingRoom, GameState::RoomName::Airlock};
     }
     GameState::RoomName GameState::getCurrentRoom() const{return GameState::currentRoom;}
     bool GameState::isRoomUnlocked(RoomName room) const
@@ -42,17 +41,24 @@ using namespace std;
         case GameState::RoomName::BriefingRoom:
         case GameState::RoomName::Airlock:
         case GameState::RoomName::MessHall:
-          { 
+        {
             setCurrentRoom(GameState::RoomName::RoomList);
             break;
-          }
         }
-
+        case GameState::RoomName::RoomList:
+        {
+            break;
+        }
+        }
     }
     void GameState::enterRoom(const GameState::RoomName& room)
     {
         switch (room)
         {
+            case GameState::RoomName::RoomList:
+            {
+
+            }
             case GameState::RoomName::FlightDeck:
             {
 
