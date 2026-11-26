@@ -49,6 +49,12 @@ int main() {
         }
     }
 	#endif
+
+	const string RED = "\033[31m";
+    const string GREEN = "\033[32m";
+    const string CYAN = "\033[36m";
+    const string RESET = "\033[0m";
+
     cout << "\033[2J\033[H\033[?25l" << flush;
 	//cout << "\e[8;25;80t" << flush; // resize terminal window to 80 x 25 characters
 	Player player;
