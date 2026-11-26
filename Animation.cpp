@@ -48,7 +48,7 @@ Animation::~Animation(){ if (echo_altered) {
         #endif
     }
 #if defined(__APPLE__) || defined(__linux__)
-char _getchAnimation() 
+char Animation::_getchAnimation() 
 {
     struct termios savedTerm, tempTerm;
     char ch;
@@ -248,6 +248,93 @@ char _getchAnimation()
         cin.ignore();
         cout << "\033[?1049l" << flush;
     }
+
+            void Animation::centeredTyping(const vector<string>& lines, const vector<string>& initialLines, int lineNumber, int extraPadding)
+    {
+        int terminalWidth = 78;
+        int terminalHeight = 23;
+        int upperBlankLines = ( (terminalHeight - lines.size()) / 2 );
+        int lowerBlankLines = (terminalHeight - lines.size() - upperBlankLines);
+        int totalChars = 0;
+        int initialChars = 0;
+        for (const string& line : lines)
+        {
+            totalChars += line.length();
+        }
+        for (const string& line : initialLines)
+        {
+            initialChars += line.length();
+        }
+
+        cout << "\033[3J" << "\033[?1049h" << flush;
+        setEcho(false);
+        resizeConsole();
+        for (int frameCount = initialChars; frameCount <= totalChars; ++frameCount)//1 character printed per frame
+        {
+            string frame;
+            frame.reserve(2100);//pre-allocate all the available characters on screen
+            int charsAvailable = frameCount;//in frame 1, 1 char slot is available, in frame 30 30 char slots are available
+            int charsPrinted;//valid maximum chars we can print on a line, also considering charsAvailable
+
+
+            frame += "\033[H";//move cursor to top left
+            frame += string(80, '-') + "\n";//render top line
+            // top blank spaces print
+            for (int i = 0; i < upperBlankLines; i++)
+            {
+                frame += "|" + string(terminalWidth, ' ') + "|\n";//render into string instead of using cout
+                //cout << "|                                                                              |" << "\n";
+            }
+            int linecount = 0;
+            // left-to-right centering
+            for (const string& line : lines)
+            {
+                int leftBlankChars;
+                int rightBlankChars;
+                ++linecount;
+                if (linecount == lineNumber)
+                {
+                    leftBlankChars = ((extraPadding + terminalWidth - static_cast<int>(line.length())) / 2);
+                    rightBlankChars = (extraPadding + terminalWidth - static_cast<int>(line.length()) - leftBlankChars);
+
+                }
+                else
+                {
+                    leftBlankChars = ((terminalWidth - static_cast<int>(line.length())) / 2);
+                    rightBlankChars = (terminalWidth - static_cast<int>(line.length()) - leftBlankChars);
+                }
+                if (line.length() < charsAvailable)
+                {
+                    charsPrinted = line.length();
+                }
+                else
+                {
+                    charsPrinted = charsAvailable;
+                }
+                charsAvailable -= charsPrinted;
+                string printed = line.substr(0, charsPrinted);
+                string unprinted = string(line.length() - charsPrinted, ' ');
+                //frame containing text is rendered
+                frame += "|" + string(leftBlankChars, ' ') + printed + unprinted
+                + string(rightBlankChars, ' ') + "|\n";
+            }            
+            // bottom blank spaces print
+            for (int i = 0; i < lowerBlankLines; i++)
+            {
+                frame += "|" + string(terminalWidth, ' ') + "|\n";
+            }
+            frame += string(79, '-');
+            cout << frame << flush;
+            this_thread::sleep_for(0.05s);
+        }
+        flushPendingKeystrokes();
+        setEcho(true);
+        this_thread::sleep_for(1s);
+        cout << "\033[H" << "\n| " << "(PRESS ENTER TO CONTINUE)";
+        cin.ignore();
+        cout << "\033[?1049l" << flush;
+    }
+
 
         void Animation::centeredTypingNoWait(const vector<string>& lines, int size)
     {

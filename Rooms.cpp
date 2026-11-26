@@ -48,7 +48,7 @@ void Rooms::briefingRoom(){
     if (ch == 'i')
     {
         const vector<string> menu = {"Today's Menu:", "Breakfast: coffee/green tea, sausage, pancakes and maple syrup", "Lunch: vegetable quiche with wheat flatbread", "Dinner: barbequed beef brisket.", "", "\033[31m MESS HALL\033[0m Hours of Operation:", "Breakfast: 06:00", "Lunch: 12:00", "Dinner: 17:00"};
-        ani.centeredTyping(menu, menu);
+        ani.centeredTyping(menu, menu, 6, 9);
        // outscr.printTextScreen({"Today's Menu:", "Breakfast: coffee/green tea, sausage, pancakes and maple syrup", "Lunch: vegetable quiche with wheat flatbread", "Dinner: barbequed beef brisket.", "", "\033[31m MESS HALL\033[0m Hours of Operation:", "Breakfast: 06:00", "Lunch: 12:00", "Dinner: 17:00"});
     }
     else if (ch == 'x')

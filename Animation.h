@@ -18,16 +18,22 @@ struct termios saved_tio;
 #endif
     Animation();
     ~Animation();
-    void setEcho(bool echoState);
-    void flushPendingKeystrokes();
+    void setEcho(bool echoState);//setEcho(true) enables cursor and echo, (false) disables both
+    void flushPendingKeystrokes();//remove user input from buffer
     void resizeConsole();
-    void centeredTyping(const vector<string>& lines);
-    void centeredTyping(const vector<string>& lines, const vector<string>& initialLines);
+    char _getchAnimation();
+    void centeredTyping(const vector<string>& lines);//Typewriter effect
+    void centeredTyping(const vector<string>& lines, const vector<string>& initialLines);//Second arg- 
+    //-lets you specify which lines from the first arg should be printed immediately without typewriter effect
+    void centeredTyping(const vector<string>& lines, const vector<string>& initialLines, int lineNumber, int extraPadding);//lets you add-
+    //-horizontal padding to specified line
+    char centeredTypingGetChar(const vector<string>& lines, const vector<string>& initialLines);//returns char with _getchAnimation
+//centeredTyping functions for chaining consecutive calls (never end a chain with one of these)
     void centeredTypingNoWait(const vector<string>& lines);
     void centeredTypingNoWait(const vector<string>& lines, const vector<string>& initialLines);
-    void centeredTypingNoWait(const vector<string>& lines, int size);
+    void centeredTypingNoWait(const vector<string>& lines, int size);//lets you enforce # of lines in last call in chain-
+    //-so that vertical padding is calculated accurately
     void centeredTypingNoWait(const vector<string>& lines, const vector<string>& initialLines, int size);
-    char centeredTypingGetChar(const vector<string>& lines, const vector<string>& initialLines);
 
 
 
