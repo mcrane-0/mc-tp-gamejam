@@ -58,16 +58,12 @@ int main() {
 	// ani.centeredTyping({"this is a test", "please work", "thanks."});
 	// char c = _getch();
 	// cout << c << flush;
-
 	outscr.printTextScreen({ "PLEASE ADJUST TERMINAL SIZE TO 80 x 25 CHARACTERS", "", "PRESS ENTER TO CONTINUE"});
 	outscr.printTextScreen({ "INSERT TITLE HERE", "By Miles Crane and Trevor Past", "For the Fall 2026 MSU Game Jam", "", "PRESS ENTER TO CONTINUE"});
 	outscr.printTextScreen({"HOW TO INTERACT WITH GAME:", "", "Options for input will be shown on screen in between [square brackets].", "If you are given an \"[O]ption\", type \"O\" and press Enter to choose it.", "", "When there are no options shown on screen, press Enter to continue."});
 	//outscr.setEcho(false);
 	//outscr.printCameraList();
 	//outscr.setEcho(true);
-
-	cin.ignore();
-
 
 	bool flag = true;
     while (flag == true)
@@ -89,24 +85,44 @@ int main() {
     }
 
 	ani.centeredTyping({"Welcome To The ___________", "Surveillance System!"});
-	
-	/*
-	outscr.setEcho(false);
-	for (int i=0; i<2; i++)
+	ani.centeredTypingNoWait({"Please select a camera to view:", "1. Flight Dic"}, 5);
+	this_thread::sleep_for(0.3s);
+	ani.centeredTypingNoWait({"Please select a camera to view:", "1. Flight Di"}, {"Please select a camera to view:", "1. Flight Di"}, 5);
+	this_thread::sleep_for(0.1s);
+	char roomSelection;
+	roomSelection = ani.centeredTypingGetChar({"Please select a camera to view:", "1. Flight Deck", "2. Crew Quarters ", "3. Briefing Room", "4. Airlock"}, {"Please select a camera to view:", "1. Flight D"});
+	if (roomSelection != '1' && roomSelection != '2' && roomSelection != '3' && roomSelection != '4')
 	{
-		outscr.printTextScreenNoInput({"Welcome To The ___________", "Surveillance System!"});
-		cout << endl;
-		this_thread::sleep_for(0.8s);
-		outscr.printTextScreenNoInput({"Welcome To The ___________", "Surveillance System!. ",});
-		cout << endl;
-		this_thread::sleep_for(0.8s);
-		outscr.printTextScreenNoInput({"Welcome To The ___________", "Surveillance System!. . ",});
-		cout << endl;
-		this_thread::sleep_for(0.8s);
-		outscr.printTextScreenNoInput({"Welcome To The ___________", "Surveillance System!. . . ",});
-		cout << endl;
-		this_thread::sleep_for(0.8s);
+		while (roomSelection != '1' && roomSelection != '2' && roomSelection != '3' && roomSelection != '4')
+		{
+			roomSelection = ani.centeredTypingGetChar({"Invalid Selection.","Please select a camera to view:", "1. Flight Deck", "2. Crew Quarters ", "3. Briefing Room", "4. Airlock"}, {"Invalid Selection.","Please select a camera to view:", "1. Flight Deck", "2. Crew Quarters ", "3. Briefing Room", "4. Airlock"});
+		}
 	}
+	//while (true)
+	//{
+	switch (roomSelection)
+	{
+	case '1':
+		
+		break;
+	case '2':
+		
+		break;
+	case '3':
+		
+		break;
+	case '4':
+		
+		break;
+
+
+	default:
+		break;
+	}
+//}
+
+
+	/*
 	outscr.printTextScreenNoInput({"Please select a camera to view:"});
 	cout << "\n";
 	this_thread::sleep_for(0.6s);
@@ -313,7 +329,9 @@ int main() {
 		outscr.printCameraScreen();
 	}
 	else { // user just exited
-		ani.centeredTyping({"lol you gave up", "loser", "it's literally just breakers", "turn them on"});
+		ani.centeredTyping({"L"});
+		outscr.printCameraScreen();
+
 	}
 
 
