@@ -6,6 +6,7 @@
 #include "OutputScreens.h"
 #include "Player.h"
 #include "Animation.h"
+#include "Rooms.h"
 
 #ifdef _WIN32
 #include <windows.h>
@@ -53,7 +54,9 @@ int main() {
 	Player player;
 	OutputScreens outscr;
 	Animation ani;
+	Rooms rooms;
 
+	rooms.briefingRoom();
 	
 	// ani.centeredTyping({"this is a test", "please work", "thanks."});
 	// char c = _getch();
