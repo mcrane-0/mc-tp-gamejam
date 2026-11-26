@@ -31,7 +31,5 @@ class OutputScreens{
         void printCameraScreen(int page, int camerasAvailable);
         void printCameraScreen();
         void printCameraList();
-
-        void printBreakerBox(bool switches[6], bool solved);
         
 };

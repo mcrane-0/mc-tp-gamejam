@@ -11,6 +11,7 @@
 #endif
 
 using namespace std;
+using namespace std::ranges;
 
         //OutputScreens outscr;
        // Animation ani;       
