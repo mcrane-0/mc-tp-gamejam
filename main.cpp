@@ -118,13 +118,13 @@ int main() {
 		state.setCurrentRoom(GameState::RoomName::FlightDeck);
 		break;
 	case '2':
-		state.setCurrentRoom(GameState::RoomName::FlightDeck);
+		state.setCurrentRoom(GameState::RoomName::CrewQuarters);
 		break;
 	case '3':
-		state.setCurrentRoom(GameState::RoomName::FlightDeck);
+		state.setCurrentRoom(GameState::RoomName::BriefingRoom);
 		break;
 	case '4':
-		state.setCurrentRoom(GameState::RoomName::FlightDeck);
+		state.setCurrentRoom(GameState::RoomName::Airlock);
 		break;
 
 	default:

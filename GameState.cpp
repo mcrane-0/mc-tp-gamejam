@@ -5,6 +5,7 @@
 //#include "OutputScreens.h"
 //#include "Animation.h"
 #include "GameState.h"
+#include "Rooms.h"
 #ifdef __APPLE__
 #include <termios.h>
 #include <unistd.h>
@@ -31,5 +32,49 @@ using namespace std;
         GameState::unlockedRooms.emplace_back(room);
     }
     void GameState::setCurrentRoom(const GameState::RoomName& newRoom){currentRoom = newRoom;}
+
+    void GameState::exitRoom(const GameState::RoomName& room)
+    {
+        switch (room)
+        {
+        case GameState::RoomName::FlightDeck:
+        case GameState::RoomName::CrewQuarters:
+        case GameState::RoomName::BriefingRoom:
+        case GameState::RoomName::Airlock:
+        case GameState::RoomName::MessHall:
+          { 
+            setCurrentRoom(GameState::RoomName::RoomList);
+            break;
+          }
+        }
+
+    }
+    void GameState::enterRoom(const GameState::RoomName& room)
+    {
+        switch (room)
+        {
+            case GameState::RoomName::FlightDeck:
+            {
+
+            }
+            case GameState::RoomName::CrewQuarters:
+            {
+
+            }
+            case GameState::RoomName::BriefingRoom:
+            {
+                roomObj.briefingRoom();
+            }
+            case GameState::RoomName::Airlock:
+            {
+
+            }
+            case GameState::RoomName::MessHall:
+            {
+
+            }
+        }
+
+    }
     //~();
     

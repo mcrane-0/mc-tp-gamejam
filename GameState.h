@@ -22,6 +22,7 @@ class GameState
         BriefingRoom,
         Airlock,
         MessHall,
+        RoomList,
  };
         GameState();
         vector<RoomName> unlockedRooms;//do .reserve(50) for 50 rooms i think
@@ -29,12 +30,16 @@ class GameState
         RoomName getCurrentRoom() const;
         bool isRoomUnlocked(RoomName room) const;
         void setCurrentRoom(const RoomName& newRoom);
+        void exitRoom(const GameState::RoomName& room);
+        void enterRoom(const GameState::RoomName& room);
+
+
         //~();
 
     private:
         //OutputScreens outscr;
        // Animation ani;
-       Rooms room;
+       Rooms roomObj;
        RoomName currentRoom;
        
 
