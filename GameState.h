@@ -24,7 +24,10 @@ class GameState
         MessHall,
  };
         GameState();
+        vector<RoomName> unlockedRooms;//do .reserve(50) for 50 rooms i think
+        void unlockRoom(RoomName room);
         RoomName getCurrentRoom() const;
+        bool isRoomUnlocked(RoomName room) const;
         void setCurrentRoom(const RoomName& newRoom);
         //~();
 

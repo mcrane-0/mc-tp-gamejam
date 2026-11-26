@@ -7,6 +7,7 @@
 #include "Player.h"
 #include "Animation.h"
 #include "Rooms.h"
+#include "GameState.h"
 
 #ifdef _WIN32
 #include <windows.h>
@@ -61,6 +62,8 @@ int main() {
 	OutputScreens outscr;
 	Animation ani;
 	Rooms rooms;
+	GameState state;
+
 
 	rooms.briefingRoom();
 	
@@ -112,18 +115,17 @@ int main() {
 	switch (roomSelection)
 	{
 	case '1':
-		
+		state.setCurrentRoom(GameState::RoomName::FlightDeck);
 		break;
 	case '2':
-		
+		state.setCurrentRoom(GameState::RoomName::FlightDeck);
 		break;
 	case '3':
-		
+		state.setCurrentRoom(GameState::RoomName::FlightDeck);
 		break;
 	case '4':
-		
+		state.setCurrentRoom(GameState::RoomName::FlightDeck);
 		break;
-
 
 	default:
 		break;
