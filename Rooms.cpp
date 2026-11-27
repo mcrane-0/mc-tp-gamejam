@@ -4,7 +4,7 @@
 #include <chrono>
 #include <thread>
 #include "Rooms.h"
-
+#include "GameState.h"
 #include "Animation.h"
 
 #ifdef _WIN32
@@ -25,8 +25,84 @@ using namespace std::chrono;
 
 
 Animation ani;
+//GameState state;
+Rooms::Rooms()
+{
+    invertedAirlockCopy = R"(                                                      █                         
+                                                      █                         
+                          █                            █                        
+                        ██                              ██                      
+                       █                                 ██                     
+                       █                        ████████  █                     
+                    ███        ██      █            █   █  ███                  
+                   ███        ██              ▓█        █   ███                 
+                  ██          █     █        █          █     ██                
+                  ██          █     █        █          █     ██                
+                           ██           ██       ▓▓     █                       
+                           ██  ▓      █                █                        
+                           ██   ▓   █     ▓▓         ██                         
+                           ██               █    █  █           █               
+                 █         ██    █                 █        ██  █               
+                 █         ███████████████████████         █   ██               
+                      ██                       ▓ █████     ███                  
+                      ██                       ▓ █████     ███                  
+                      ██ █████████████████████ ▓            ██                  
+                      ██                                  █ ██                  
+                    ████                                    ███                 
+                    ██                                        █                 
+                    ██                                        ███               
+                 ███                                          █                 
+                   ███                                                          
+)";
 
-Rooms::Rooms(){ };
+    crewQuartersArt = R"(  █      ░█        ██   ░ █      █                                            
+  █ █ █░ ░░░░█    ░ ███  █  █░   █                                        ███ 
+  ██   ░██░█░ ░ ░  █ █  █  █░   ██                                    ███     
+   ██░ █   ███ ░ █░░ ██   ░██ ███                        ████████████         
+      ████ ███ █ ████ ░ █ ████               ██                     █      ██ 
+        ████████████████████                █ █                     █   ██    
+                                     ███████  ██████████           ██████     
+█████████████████████████████████████████████ █                               
+                                            █ █                           ███ 
+                                                   ███████████████  ██        
+                                               █                     █        
+                                             ██ █                     █  ██   
+                                             █  █    █████████████████████████
+                                            ██  █                             
+                                              ██                              
+                                               ███████████████████████████████
+                                                                   ██████     
+                                                 ██                    █      
+                                                █ █                     █    █
+                                               █  ████████████████████████████
+                                               █  █                           
+                                                █ █                           
+                                                 █████████████████████████████)";
+
+    crewQuarters1 = "  █      ░█        ██   ░ █      █                                            ";
+    crewQuarters2 = "  █ █ █░ ░░░░█    ░ ███  █  █░   █                                        ███ ";
+    crewQuarters3 = "  ██   ░██░█░ ░ ░  █ █  █  █░   ██                                    ███     ";
+    crewQuarters4 = "   ██░ █   ███ ░ █░░ ██   ░██ ███                        ████████████         ";
+    crewQuarters5 = "      ████ ███ █ ████ ░ █ ████               ██                     █      ██ ";
+    crewQuarters6 = "        ████████████████████                █ █                     █   ██    ";
+    crewQuarters7 = "                                     ███████  ██████████           ██████     ";
+    crewQuarters8 = "█████████████████████████████████████████████ █                               ";
+    crewQuarters9 = "                                            █ █                           ███ ";
+    crewQuarters10 = "                                                   ███████████████  ██        ";
+    crewQuarters11 = "                                               █                     █        ";
+    crewQuarters12 = "                                             ██ █                     █  ██   ";
+    crewQuarters13 = "                                             █  █    █████████████████████████";
+    crewQuarters14 = "                                            ██  █                             ";
+    crewQuarters15 = "                                              ██                              ";
+    crewQuarters16 = "                                               ███████████████████████████████";
+    crewQuarters17 = "                                                                   ██████     ";
+    crewQuarters18 = "                                                 ██                    █      ";
+    crewQuarters19 = "                                                █ █                     █    █";
+    crewQuarters20 = "                                               █  ████████████████████████████";
+    crewQuarters21 = "                                               █  █                           ";
+    crewQuarters22 = "                                                █ █                           ";
+    crewQuarters23 = "                                                 █████████████████████████████";
+}
 
 /* ASCII Colored Text
 	RED = "\033[31m";
@@ -81,9 +157,9 @@ void Rooms::resizeConsole()
 }
 
 
-void Rooms::briefingRoom(){
+void Rooms::briefingRoomIntro(GameState& state){
     ani.centeredTypingNoWait({"Papers are strewn across a large metal table.", "On the nearest edge, you spot a small blue sheet of paper."});
-    char ch;
+    char ch = '0';
     while (ch != 'i' && ch != 'x')
     {
         ch = ani.centeredTypingGetChar({"Papers are strewn across a large metal table.", "On the nearest edge, you spot a small blue sheet of paper.", "", "E(x)it     Zoom (I)n"}, {"Papers are strewn across a large metal table.", "On the nearest edge, you spot a small blue sheet of paper.", "", "E(x)it     Zoom (I)n"});   
@@ -96,9 +172,11 @@ void Rooms::briefingRoom(){
     }
     else if (ch == 'x')
     {
-        cout << "poop";
+        state.exitRoom();
     }
+    state.exitRoom();
 }
+
 
 
 void Rooms::cameraScreen(int page, int camerasAvailable, string bottomText){
@@ -437,3 +515,106 @@ void Rooms::intro()
     ani.printTextScreen({"INSERT TITLE HERE", "By Miles Crane and Trevor Past", "For the Fall 2026 MSU Game Jam", "", "PRESS ENTER TO CONTINUE"});
     ani.printTextScreen({"HOW TO INTERACT WITH GAME:", "", "Options for input will be shown on screen in between [square brackets].", "If you are given an \"[O]ption\", type \"O\" and press Enter to choose it.", "", "When there are no options shown on screen, press Enter to continue."});
 }
+void Rooms::flightDeckIntro(GameState& state)
+{
+	const string PASSPHRASEFLIGHTDECK = "What if the truth that I find is just a prettier lie?";
+    const string PASSPHRASEFLIGHTDECK2 = "what if the truth that i find is just a prettier lie?";
+    const string PASSPHRASEFLIGHTDECK3 = "what if the truth that I find is just a prettier lie?";
+
+    string passphrase = "";
+	char ch = '0';
+	bool flag = true;
+    while (flag == true)
+    {
+        ani.flushPendingKeystrokes();
+        passphrase = ani.printTextScreenWithInput({"This is a secure area. Authorization required.", "", "", "", "",
+        "Enter Passphrase:"});
+        if (passphrase == PASSPHRASEFLIGHTDECK || passphrase == PASSPHRASEFLIGHTDECK2 || passphrase == PASSPHRASEFLIGHTDECK3)
+        {
+            flag = false;
+            state.unlockedRooms.emplace_back(GameState::RoomName::FlightDeck);
+            //state.enterRoom(GameState::RoomName::FlightDeck);
+        }
+        else
+        {
+            ani.flushPendingKeystrokes();
+            ch = ani.centeredTypingGetChar({"Try Again? (Y/n)"}, {""});
+			if (ch == 'n')
+			{
+                ani.flushPendingKeystrokes();
+				state.enterRoom(GameState::RoomName::RoomList);
+			}
+            ani.flushPendingKeystrokes();
+        }
+    }
+}
+    void Rooms::airlock(GameState& state)
+    {
+        ani.flushPendingKeystrokes();
+        ani.setEcho(false);
+        cout << invertedAirlockCopy;
+        cin.ignore();
+        ani.setEcho(true);
+        if (!state.powerRestored)
+        {
+            ani.flushPendingKeystrokes();
+            state.enterRoom(GameState::RoomName::RoomList);
+        }
+        //else enter camera
+
+    }
+
+    void Rooms::crewQuarters(GameState& state)
+    {
+        ani.flushPendingKeystrokes();
+        ani.printTextScreen(
+            {crewQuarters1, crewQuarters2, crewQuarters3, crewQuarters4, crewQuarters5,
+             crewQuarters6, crewQuarters7, crewQuarters8, crewQuarters9, crewQuarters10,
+             crewQuarters11, crewQuarters12, crewQuarters13, crewQuarters14, crewQuarters15,
+             crewQuarters16, crewQuarters17, crewQuarters18, crewQuarters19, "  There's nobody here...                        ████████████████████████████. |",
+             crewQuarters21, crewQuarters22, crewQuarters23}
+            );
+            state.enterRoom(GameState::RoomName::RoomList);
+    }
+
+    void Rooms::roomList(GameState& state)
+    {
+        char roomSelection;
+	roomSelection = ani.centeredTypingGetChar({"Please select a camera to view:", "1. Flight Deck", "2. Crew Quarters ", "3. Briefing Room", "4. Airlock"}, {"Please select a camera to view:", "1. Flight D"});
+	if (roomSelection != '1' && roomSelection != '2' && roomSelection != '3' && roomSelection != '4')
+	{
+		while (roomSelection != '1' && roomSelection != '2' && roomSelection != '3' && roomSelection != '4')
+		{
+			roomSelection = ani.centeredTypingGetChar({"Invalid Selection.","Please select a camera to view:", "1. Flight Deck", "2. Crew Quarters ", "3. Briefing Room", "4. Airlock"}, {"Invalid Selection.","Please select a camera to view:", "1. Flight Deck", "2. Crew Quarters ", "3. Briefing Room", "4. Airlock"});
+		}
+	}
+	//while (true)
+	//{
+	switch (roomSelection)
+	{
+	case '1':
+        if (state.isRoomUnlocked(GameState::RoomName::FlightDeck))
+        {
+            //state.enterRoom(GameState::RoomName::FlightDeck);
+            //a way back home... a brief scene plays and the game ends, 
+            //returning the player to the reality they had temporarily abandoned
+        }
+        else
+        {
+		    state.enterRoom(GameState::RoomName::FlightDeckIntro);
+        }
+		break;
+	case '2':
+		state.enterRoom(GameState::RoomName::CrewQuarters);
+		break;
+	case '3':
+		state.enterRoom(GameState::RoomName::BriefingRoomIntro);
+		break;
+	case '4':
+		state.enterRoom(GameState::RoomName::Airlock);
+		break;
+
+	default:
+		break;
+	}
+    }
