@@ -62,6 +62,108 @@ int main() {
 	Rooms rooms;
 	GameState state;
 
+	//ASCII ART STILLS
+	
+	string airlock1 ="███████████████████████████████████████████████████ ████████████████████████";
+	string airlock2 ="████████████████████████ ███████████████████████████ ███████████████████████";
+	string airlock3 ="██████████████████████  █████████████████████████████  █████████████████████";
+	string airlock4 =	"█████████████████████ ████████████████████████████████  ████████████████████";
+	string airlock5 =	"█████████████████████ ███████████████████████        ██ ████████████████████";
+	string airlock6 =	"███████████████████  ████████  ██████ ███████████ ███ ██  ██████████████████";
+	string airlock7 =	"██████████████████  ████████  █████████████░ ████████ ███  █████████████████";
+	string airlock8 =	"█████████████████  █████████ █████ ███████ ██████████ ████  ████████████████";
+	string airlock9 ="█████████████████████████  ███████████ ███████░░█████ ██████████████████████";
+	string airlock10 ="█████████████████████████  ██░██████ ███████████████ ███████████████████████";
+	string airlock11 ="█████████████████████████  ███░███ ████░░█████████  ████████████████████████";
+	string airlock12 ="█████████████████████████  ██████████████ ████ ██ ██████████ ███████████████";
+	string airlock13 =	"████████████████ ████████  ████ ████████████████ ████████ ██ ███████████████";
+	string airlock14 =	"████████████████ ████████                      █████████ ██  ███████████████";
+	string airlock15 =	"████████████████████  ██████████████████████░█     █████  ██████████████████";
+	string airlock16 =	"████████████████████  █                    █░████████████ ██████████████████";
+	string airlock17 =	"████████████████████  █████████████████████████████████ █ ██████████████████";
+	string airlock18 =	"███████████████████   ███████████████████████████████████  █████████████████";
+	string airlock19 =	"███████████████████ ██████████████████████████████████████ █████████████████";
+	string airlock20 =	"███████████████████ ██████████████████████████████████████   ███████████████";
+	string airlock21 =	"████████████████   ███████████████████████████████████████ █████████████████";
+	string airlock22 =	"██████████████████  ████████████████████████████████████████████████████████";
+	string airlockInverted1 = "                                                   █                        ";
+	string airlockInverted2 = "                        █                           █                       ";
+	string airlockInverted3 = "                      ██                             ██                     ";
+	string airlockInverted4 = "                     █                                ██                    ";
+	string airlockInverted5 = "                     █                       ████████  █                    ";
+	string airlockInverted6 = "                   ██        ██      █           █   █  ██                  ";
+	string airlockInverted7 = "                  ██        ██             ▓█        █   ██                 ";
+	string airlockInverted8 = "                 ██         █     █       █          █    ██                ";
+	string airlockInverted9 = "                         ██           █       ▓▓     █                      ";
+	string airlockInverted10 = "                         ██  ▓      █               █                       ";
+	string airlockInverted11 = "                         ██   ▓   █    ▓▓         ██                        ";
+	string airlockInverted12 = "                         ██              █    █  █          █               ";
+	string airlockInverted13 = "                █        ██    █                █        █  █               ";
+	string airlockInverted14 = "                █        ██████████████████████         █  ██               ";
+	string airlockInverted15 = "                    ██                      ▓ █████     ██                  ";
+	string airlockInverted16 = "                    ██ ████████████████████ ▓            █                  ";
+	string airlockInverted17 = "                    ██                                 █ █                  ";
+	string airlockInverted18 = "                   ███                                   ██                 ";
+	string airlockInverted19 = "                   █                                      █                 ";
+	string airlockInverted20 = "                   █                                      ███               ";
+	string airlockInverted21 = "                ███                                       █                 ";
+	string airlockInverted22 = "                  ██                                                        ";
+//copyable
+string airlockCopy = R"(██████████████████████████████████████████████████████ █████████████████████████
+██████████████████████████████████████████████████████ █████████████████████████
+██████████████████████████ ████████████████████████████ ████████████████████████
+████████████████████████  ██████████████████████████████  ██████████████████████
+███████████████████████ █████████████████████████████████  █████████████████████
+███████████████████████ ████████████████████████        ██ █████████████████████
+████████████████████   ████████  ██████ ████████████ ███ ██   ██████████████████
+███████████████████   ████████  ██████████████░ ████████ ███   █████████████████
+██████████████████  ██████████ █████ ████████ ██████████ █████  ████████████████
+██████████████████  ██████████ █████ ████████ ██████████ █████  ████████████████
+███████████████████████████  ███████████  ███████░░█████ ███████████████████████
+███████████████████████████  ██░██████ ████████████████ ████████████████████████
+███████████████████████████  ███░███ █████░░█████████  █████████████████████████
+███████████████████████████  ███████████████ ████ ██ ███████████ ███████████████
+█████████████████ █████████  ████ █████████████████ ████████  ██ ███████████████
+█████████████████ █████████                       █████████ ███  ███████████████
+██████████████████████  ███████████████████████░█     █████   ██████████████████
+██████████████████████  ███████████████████████░█     █████   ██████████████████
+██████████████████████  █                     █░████████████  ██████████████████
+██████████████████████  ██████████████████████████████████ █  ██████████████████
+████████████████████    ████████████████████████████████████   █████████████████
+████████████████████  ████████████████████████████████████████ █████████████████
+████████████████████  ████████████████████████████████████████   ███████████████
+█████████████████   ██████████████████████████████████████████ █████████████████
+███████████████████   ██████████████████████████████████████████████████████████)";
+string invertedAirlockCopy = R"(                                                      █                         
+                                                      █                         
+                          █                            █                        
+                        ██                              ██                      
+                       █                                 ██                     
+                       █                        ████████  █                     
+                    ███        ██      █            █   █  ███                  
+                   ███        ██              ▓█        █   ███                 
+                  ██          █     █        █          █     ██                
+                  ██          █     █        █          █     ██                
+                           ██           ██       ▓▓     █                       
+                           ██  ▓      █                █                        
+                           ██   ▓   █     ▓▓         ██                         
+                           ██               █    █  █           █               
+                 █         ██    █                 █        ██  █               
+                 █         ███████████████████████         █   ██               
+                      ██                       ▓ █████     ███                  
+                      ██                       ▓ █████     ███                  
+                      ██ █████████████████████ ▓            ██                  
+                      ██                                  █ ██                  
+                    ████                                    ███                 
+                    ██                                        █                 
+                    ██                                        ███               
+                 ███                                          █                 
+                   ███                                                          
+)";
+
+
+
+
 
 	//rooms.briefingRoom();
 	
@@ -69,6 +171,24 @@ int main() {
 	//ani.centeredTyping({ "INSERT TITLE HERE", "By Miles Crane and Trevor Past", "For the Fall 2026 MSU Game Jam", "", "PRESS ENTER TO CONTINUE" }, { "INSERT TITLE HERE", "By Miles Crane and Trevor Past", "For the Fall 2026 MSU Game Jam", "", "PRESS ENTER TO CONTINUE" });
 	//ani.centeredTyping({ "HOW TO INTERACT WITH GAME:", "", "Options for input will be shown on screen in between [square brackets].", "If you are given an \"[O]ption\", type \"O\" and press Enter to choose it.", "", "When there are no options shown on screen, press Enter to continue." }, { "HOW TO INTERACT WITH GAME:", "", "Options for input will be shown on screen in between [square brackets].", "If you are given an \"[O]ption\", type \"O\" and press Enter to choose it.", "", "When there are no options shown on screen, press Enter to continue." });
 	rooms.intro();
+	//cout << airlockCopy;
+	//cin.ignore();
+	//cout << invertedAirlockCopy;
+	//cin.ignore();
+	/*
+	ani.printTextScreen({airlock1, airlock2, airlock3, airlock4, airlock5, airlock6, airlock7,
+	airlock8, airlock9, airlock10, airlock11, airlock12, airlock13, airlock14, airlock15, airlock16, airlock17, airlock18, airlock19, airlock20, airlock21, airlock22});
+	//inverted
+	ani.printTextScreen({
+		airlockInverted1, airlockInverted2, airlockInverted3, airlockInverted4,
+		airlockInverted5, airlockInverted6, airlockInverted7, airlockInverted8,
+		airlockInverted9, airlockInverted10, airlockInverted11, airlockInverted12,
+		airlockInverted13, airlockInverted14, airlockInverted15, airlockInverted16,
+		airlockInverted17, airlockInverted18, airlockInverted19, airlockInverted20,
+		airlockInverted21, airlockInverted22
+	});
+	*/
+	
 	bool flag = true;
     while (flag == true)
     {
@@ -93,6 +213,9 @@ int main() {
 	this_thread::sleep_for(0.3s);
 	ani.centeredTypingNoWait({"Please select a camera to view:", "1. Flight Di"}, {"Please select a camera to view:", "1. Flight Di"}, 5);
 	this_thread::sleep_for(0.1s);
+	ani.setEcho(true);
+	state.enterRoom(GameState::RoomName::RoomList);
+	/*
 	char roomSelection;
 	roomSelection = ani.centeredTypingGetChar({"Please select a camera to view:", "1. Flight Deck", "2. Crew Quarters ", "3. Briefing Room", "4. Airlock"}, {"Please select a camera to view:", "1. Flight D"});
 	if (roomSelection != '1' && roomSelection != '2' && roomSelection != '3' && roomSelection != '4')
@@ -113,7 +236,9 @@ int main() {
 		state.setCurrentRoom(GameState::RoomName::CrewQuarters);
 		break;
 	case '3':
-		state.setCurrentRoom(GameState::RoomName::BriefingRoom);
+		//state.setCurrentRoom(GameState::RoomName::BriefingRoom);
+		//rooms.briefingRoomIntro();
+		state.enterRoom(GameState::RoomName::BriefingRoomIntro);
 		break;
 	case '4':
 		state.setCurrentRoom(GameState::RoomName::Airlock);
@@ -122,178 +247,7 @@ int main() {
 	default:
 		break;
 	}
-//}
-
-
-	/*
-	outscr.printTextScreenNoInput({"Please select a camera to view:"});
-	cout << "\n";
-	this_thread::sleep_for(0.6s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1.| "});
-	cout << "\n";
-	this_thread::sleep_for(0.1s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. F| "});
-	cout << "\n";
-	this_thread::sleep_for(0.2s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Fl|"});
-	cout << "\n";
-	this_thread::sleep_for(0.1s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Fli| "});
-	cout << "\n";
-	this_thread::sleep_for(0.1s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flig|"});
-	cout << "\n";
-	this_thread::sleep_for(0.2s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Fligh| "});
-	cout << "\n";
-	this_thread::sleep_for(0.1s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight|"});
-	cout << "\n";
-	this_thread::sleep_for(0.2s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight D|"});
-	cout << "\n";
-	this_thread::sleep_for(0.1s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Di| "});
-	cout << "\n";
-	this_thread::sleep_for(0.1s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Dic|"});
-	cout << "\n";
-	this_thread::sleep_for(0.7s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Di| "});
-	cout << "\n";
-	this_thread::sleep_for(0.2s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight D|"});
-	cout << "\n";
-	this_thread::sleep_for(0.2s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight De| "});
-	cout << "\n";
-	this_thread::sleep_for(0.3s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Dec|"});
-	cout << "\n";
-	this_thread::sleep_for(0.1s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck|"});
-	cout << "\n";
-	this_thread::sleep_for(0.2s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck", "2.|"});
-	cout << "\n";
-	this_thread::sleep_for(0.1s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck", "2. | "});
-	cout << "\n";
-	this_thread::sleep_for(0.1s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck", "2. C|"});
-	//cout << endl;
-	this_thread::sleep_for(0.1s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck", "2. Cr| "});
-	//cout << endl;
-	this_thread::sleep_for(0.1s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck", "2. Cre|"});
-	//cout << endl;
-	this_thread::sleep_for(0.2s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck", "2. Crew| "});
-	//cout << endl;
-	this_thread::sleep_for(0.1s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck", "2. Crew | "});
-	//cout << endl;
-	this_thread::sleep_for(0.1s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck", "2. Crew Q|"});
-	//cout << endl;
-	this_thread::sleep_for(0.2s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck", "2. Crew Qu| "});
-	//cout << endl;
-	this_thread::sleep_for(0.1s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck", "2. Crew Qua|"});
-	//cout << endl;
-	this_thread::sleep_for(0.1s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck", "2. Crew Quar|"});
-	cout << endl;
-	this_thread::sleep_for(0.1s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck", "2. Crew Quart| "});
-	cout << endl;
-	this_thread::sleep_for(0.2s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck", "2. Crew Quarte|"});
-	cout << endl;
-	this_thread::sleep_for(0.1s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck", "2. Crew Quarter| "});
-	cout << endl;
-	this_thread::sleep_for(0.2s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck", "2. Crew Quarters|"});
-	cout << endl;
-	this_thread::sleep_for(0.1s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck", "2. Crew Quarters ", "3.| "});
-	cout << endl;
-	this_thread::sleep_for(0.1s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck", "2. Crew Quarters ", "3. B|"});
-	cout << endl;
-	this_thread::sleep_for(0.1s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck", "2. Crew Quarters ", "3. Br| "});
-	cout << endl;
-	this_thread::sleep_for(0.2s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck", "2. Crew Quarters ", "3. Bri|"});
-	cout << endl;
-	this_thread::sleep_for(0.2s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck", "2. Crew Quarters ", "3. Brie| "});
-	cout << endl;
-	this_thread::sleep_for(0.1s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck", "2. Crew Quarters ", "3. Brief|"});
-	cout << endl;
-	this_thread::sleep_for(0.1s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck", "2. Crew Quarters ", "3. Briefi| "});
-	cout << endl;
-	this_thread::sleep_for(0.1s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck", "2. Crew Quarters ", "3. Briefin|"});
-	cout << endl;
-	this_thread::sleep_for(0.2s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck", "2. Crew Quarters ", "3. Briefing| "});
-	cout << endl;
-	this_thread::sleep_for(0.1s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck", "2. Crew Quarters ", "3. Briefing | "});
-	cout << endl;
-	this_thread::sleep_for(0.1s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck", "2. Crew Quarters ", "3. Briefing R|"});
-	cout << endl;
-	this_thread::sleep_for(0.2s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck", "2. Crew Quarters ", "3. Briefing Ro| "});
-	cout << endl;
-	this_thread::sleep_for(0.1s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck", "2. Crew Quarters ", "3. Briefing Roo|"});
-	cout << endl;
-	this_thread::sleep_for(0.1s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck", "2. Crew Quarters ", "3. Briefing Room| "});
-	cout << endl;
-	this_thread::sleep_for(0.1s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck", "2. Crew Quarters ", "3. Briefing Room", "4.|"});
-	cout << endl;
-	this_thread::sleep_for(0.1s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck", "2. Crew Quarters ", "3. Briefing Room", "4. | "});
-	cout << endl;
-	this_thread::sleep_for(0.3s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck", "2. Crew Quarters ", "3. Briefing Room", "4. A|"});
-	cout << endl;
-	this_thread::sleep_for(0.1s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck", "2. Crew Quarters ", "3. Briefing Room", "4. Ai| "});
-	cout << endl;
-	this_thread::sleep_for(0.2s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck", "2. Crew Quarters ", "3. Briefing Room", "4. Air|"});
-	cout << endl;
-	this_thread::sleep_for(0.1s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck", "2. Crew Quarters ", "3. Briefing Room", "4. Airl| "});
-	cout << endl;
-	this_thread::sleep_for(0.1s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck", "2. Crew Quarters ", "3. Briefing Room", "4. Airlo|" });
-	cout << endl;
-	this_thread::sleep_for(0.1s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck", "2. Crew Quarters ", "3. Briefing Room", "4. Airloc|"});
-	cout << endl;
-	this_thread::sleep_for(0.2s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck", "2. Crew Quarters ", "3. Briefing Room", "4. Airlock| "});
-	cout << endl;
-	this_thread::sleep_for(0.1s);
-	outscr.printTextScreenNoInput({"Please select a camera to view:", "1. Flight Deck", "2. Crew Quarters ", "3. Briefing Room", "4. Airlock  "});
-	cout << endl;
-	this_thread::sleep_for(0.3s);
-	outscr.setEcho(true);
-	*/
-
+*/
 	bool breakerSwitches[6] = { true, true, true, false, false, true }; // A, B, C, D, E, F    true = ON, false = OFF
 	char inputCh = ' ';
 	bool solved = false;
@@ -334,6 +288,7 @@ int main() {
 	}
 	
 	if (solved){
+		state.powerRestored = true;
 		rooms.cameraScreen();
 	}
 	else { // user just exited
@@ -345,3 +300,25 @@ int main() {
 
 	return 0;
 }
+/*
+	const string PASSPHRASEFLIGHTDECK = "What if the truth that I find is just a prettier lie?";
+	bool flag = true;
+    while (flag == true)
+    {
+        string passphrase = "";
+		char ch = "0";
+        passphrase = ani.printTextScreenWithInput({" ENTER NAME NOW "});
+        if (passphrase == PASSPHRASEFLIGHTDECK)
+        {
+            flag = false;
+        }
+        else
+        {
+            ch = ani.centeredTypingGetChar({"Try Again? (Y/n)"});
+			if (ch == "n")
+			{
+				enterRoom(GameState::RoomName::RoomList);
+			}
+        }
+    }
+		*/
