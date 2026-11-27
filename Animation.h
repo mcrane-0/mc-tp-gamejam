@@ -22,6 +22,7 @@ struct termios saved_tio;
     void flushPendingKeystrokes();//remove user input from buffer
     void resizeConsole();
     char _getchAnimation();
+    void typingSpeed();
 
     void centeredTyping(const vector<string>& lines);//Typewriter effect
     void centeredTyping(const vector<string>& lines, const vector<string>& initialLines);//Second arg- 

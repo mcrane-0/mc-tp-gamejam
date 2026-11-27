@@ -102,6 +102,10 @@ char _getchAnimation()
             SetConsoleWindowInfo(hOut, TRUE, &window);
         #endif
     }
+    void Animation::typingSpeed()
+    {
+        this_thread::sleep_for(0.05s);
+    }
     void Animation::centeredTyping(const vector<string>& lines)
     {
         int terminalWidth = 78;
@@ -162,7 +166,7 @@ char _getchAnimation()
             }
             frame += string(79, '-');
             cout << frame << flush;
-            this_thread::sleep_for(0.05s);
+            typingSpeed();
         }
         flushPendingKeystrokes();
         setEcho(true);
@@ -239,7 +243,7 @@ char _getchAnimation()
             }
             frame += string(79, '-');
             cout << frame << flush;
-            this_thread::sleep_for(0.05s);
+            typingSpeed();
         }
         flushPendingKeystrokes();
         setEcho(true);
@@ -325,7 +329,7 @@ char _getchAnimation()
             }
             frame += string(79, '-');
             cout << frame << flush;
-            this_thread::sleep_for(0.05s);
+            typingSpeed();
         }
         flushPendingKeystrokes();
         setEcho(true);
@@ -402,7 +406,7 @@ char _getchAnimation()
             
             frame += string(79, '-');
             cout << frame << flush;
-            this_thread::sleep_for(0.05s);
+            typingSpeed();
         }
         flushPendingKeystrokes();
         //setEcho(true);        
@@ -469,7 +473,7 @@ char _getchAnimation()
             }
             frame += string(79, '-');
             cout << frame << flush;
-            this_thread::sleep_for(0.05s);
+            typingSpeed();
         }
         flushPendingKeystrokes();
         //setEcho(true);
@@ -539,7 +543,7 @@ char _getchAnimation()
             }
             frame += string(79, '-');
             cout << frame << flush;
-            this_thread::sleep_for(0.05s);
+            typingSpeed();
         }
         flushPendingKeystrokes();
         //setEcho(true);
@@ -609,7 +613,7 @@ char _getchAnimation()
             }
             frame += string(79, '-');
             cout << frame << flush;
-            this_thread::sleep_for(0.05s);
+            typingSpeed();
         }
         flushPendingKeystrokes();
         //setEcho(true);
@@ -681,7 +685,7 @@ char _getchAnimation()
             }
             frame += string(79, '-');
             cout << frame << flush;
-            this_thread::sleep_for(0.05s);
+            typingSpeed();
         }
         flushPendingKeystrokes();
         this_thread::sleep_for(1s);
@@ -756,7 +760,7 @@ char _getchAnimation()
             }
             frame += string(80, '-') + "\n";
             cout << frame << flush;
-            this_thread::sleep_for(0.05s);
+            typingSpeed();
         }
         flushPendingKeystrokes();
         this_thread::sleep_for(1s);
@@ -777,6 +781,7 @@ void Animation::clearScreen()
 }
 void Animation::printTextScreen(const vector<string>& lines) 
 {
+    setEcho(false);
 	int upperBlankLines = ( (23 - lines.size()) / 2 );
 	int lowerBlankLines = (23 - lines.size() - upperBlankLines);
 
@@ -807,6 +812,7 @@ void Animation::printTextScreen(const vector<string>& lines)
 	cout << "-------------------------------------------------------------------------------" << flush;
 
 	cin.ignore();
+    setEcho(true);
 	clearScreen();
 }
 string Animation::printTextScreenWithInput(const vector<string>& lines) 
