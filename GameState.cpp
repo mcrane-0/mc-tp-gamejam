@@ -14,12 +14,13 @@ using namespace std;
 //using namespace std::ranges;
 
         //OutputScreens outscr;
-       // Animation ani;       
+        Animation aniObj;       
 
     GameState::GameState()
     {
+        powerRestored = false;
         unlockedRooms.reserve(50);
-        unlockedRooms = {GameState::RoomName::CrewQuarters, GameState::RoomName::BriefingRoom, GameState::RoomName::Airlock};
+        unlockedRooms = {GameState::RoomName::CrewQuarters, GameState::RoomName::BriefingRoom, GameState::RoomName::BriefingRoomIntro, GameState::RoomName::Airlock};
     }
     GameState::RoomName GameState::getCurrentRoom() const{return GameState::currentRoom;}
     bool GameState::isRoomUnlocked(RoomName room) const
@@ -33,9 +34,10 @@ using namespace std;
     }
     void GameState::setCurrentRoom(const GameState::RoomName& newRoom){currentRoom = newRoom;}
 
-    void GameState::exitRoom(const GameState::RoomName& room)
+    void GameState::exitRoom()
     {
-        switch (room)
+        aniObj.flushPendingKeystrokes();
+        switch (currentRoom)
         {
         case GameState::RoomName::FlightDeck:
         case GameState::RoomName::CrewQuarters:
@@ -45,6 +47,13 @@ using namespace std;
         {
             setCurrentRoom(GameState::RoomName::RoomList);
             break;
+        }
+        case GameState::RoomName::FlightDeckIntro:
+        case GameState::RoomName::BriefingRoomIntro:
+        {
+            enterRoom(GameState::RoomName::RoomList);
+            break;
+
         }
         case GameState::RoomName::RoomList:
         {
@@ -58,27 +67,46 @@ using namespace std;
         {
             case GameState::RoomName::RoomList:
             {
-
+                setCurrentRoom(GameState::RoomName::RoomList);
+                roomObj.roomList(*this);
+                break;
             }
             case GameState::RoomName::FlightDeck:
             {
 
+                break;
+            }
+            case GameState::RoomName::FlightDeckIntro:
+            {
+                setCurrentRoom(GameState::RoomName::FlightDeckIntro);
+                roomObj.flightDeckIntro(*this);
+                break;
             }
             case GameState::RoomName::CrewQuarters:
             {
-
+                setCurrentRoom(GameState::RoomName::CrewQuarters);
+                roomObj.crewQuarters(*this);
+                break;
             }
             case GameState::RoomName::BriefingRoom:
             {
-                roomObj.briefingRoom();
+                break;
+            }
+            case GameState::RoomName::BriefingRoomIntro:
+            {
+                setCurrentRoom(GameState::RoomName::BriefingRoomIntro);
+                roomObj.briefingRoomIntro(*this);
+                break;
             }
             case GameState::RoomName::Airlock:
             {
-
+                setCurrentRoom(GameState::RoomName::Airlock);
+                roomObj.airlock(*this);
+                break;
             }
             case GameState::RoomName::MessHall:
             {
-
+                break;
             }
         }
 

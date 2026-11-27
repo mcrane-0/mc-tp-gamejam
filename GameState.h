@@ -18,20 +18,23 @@ class GameState
      enum class RoomName
  {
         FlightDeck,
+        FlightDeckIntro,
         CrewQuarters,
         BriefingRoom,
+        BriefingRoomIntro,
         Airlock,
         MessHall,
         RoomList,
  };
         GameState();
+        bool powerRestored;
         vector<RoomName> unlockedRooms;//do .reserve(50) for 50 rooms i think
         void unlockRoom(RoomName room);
         RoomName getCurrentRoom() const;
         bool isRoomUnlocked(RoomName room) const;
         void setCurrentRoom(const RoomName& newRoom);
-        void exitRoom(const GameState::RoomName& room);
-        void enterRoom(const GameState::RoomName& room);
+        void exitRoom();
+        void enterRoom(const RoomName& room);
 
 
         //~();
