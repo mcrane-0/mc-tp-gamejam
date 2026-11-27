@@ -769,11 +769,88 @@ char _getchAnimation()
         cout << "\033[?1049l" << flush;
         return answer;
     }
+//Output Screens
+void Animation::clearScreen()
+{
+    flushPendingKeystrokes(); 
+    std::cout << "\033[2J\033[3J\033[999;1H" << std::flush;
+}
+void Animation::printTextScreen(const vector<string>& lines) 
+{
+	int upperBlankLines = ( (23 - lines.size()) / 2 );
+	int lowerBlankLines = (23 - lines.size() - upperBlankLines);
+
+	cout << "--------------------------------------------------------------------------------" << "\n";
+	//this_thread::sleep_for(0.1s);
+	for (int i = 0; i < upperBlankLines; i++) {
+		cout << "|                                                                              |" << "\n";
+	}
+
+	for (int i = 0; i < lines.size(); i++) {
+		int leftBlankChars = ( (78 - lines[i].length()) / 2);
+		int rightBlankChars = (78 - lines[i].length() - leftBlankChars);
+		cout << "|";
+		for (int j = 0; j < leftBlankChars; j++) {
+			cout << " ";
+		}
+		cout << lines[i];
+		for (int j = 0; j < rightBlankChars; j++) {
+			cout << " ";
+		}
+		cout << "|" << "\n";
+	}
+
+	for (int i = 0; i < lowerBlankLines; i++) {
+		cout << "|                                                                              |" << "\n";
+	}
+
+	cout << "-------------------------------------------------------------------------------" << flush;
+
+	cin.ignore();
+	clearScreen();
+}
+string Animation::printTextScreenWithInput(const vector<string>& lines) 
+{
+	int upperBlankLines = ( (23 - lines.size()) / 2 );
+	int lowerBlankLines = (23 - lines.size() - upperBlankLines);
+
+	cout << "--------------------------------------------------------------------------------" << "\n";
+	//this_thread::sleep_for(0.1s);
+
+	for (int i = 0; i < upperBlankLines; i++) {
+		cout << "|                                                                              |" << "\n";
+	}
+
+	for (int i = 0; i < lines.size(); i++) {
+		int leftBlankChars = ( (78 - lines[i].length()) / 2);
+		int rightBlankChars = (78 - lines[i].length() - leftBlankChars);
+		cout << "|";
+		for (int j = 0; j < leftBlankChars; j++) {
+			cout << " ";
+		}
+		cout << lines[i];
+		for (int j = 0; j < rightBlankChars; j++) {
+			cout << " ";
+		}
+		cout << "|" << "\n";
+	}
+
+	for (int i = 0; i < (lowerBlankLines - 1); i++) {
+		cout << "|                                                                              |" << "\n";
+	}
+
+	cout << "--------------------------------------------------------------------------------" << "\n" << flush;
+    flushPendingKeystrokes();
+	string answer = "";
+    cout << "\033[?25h" << flush;
+	getline(cin, answer);
+
+	clearScreen();
+
+	return answer;
+}
 
 
 
 
-    //void Animation::centeredTyping(const vector<string>& lines)
-    //{
-    //    Animation::centeredTyping(lines);
-    //}
+    

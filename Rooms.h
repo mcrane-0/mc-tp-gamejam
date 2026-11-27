@@ -27,5 +27,7 @@ class Rooms{
         void cameraScreen(int page, int camerasAvailable);
         void cameraScreen();
         void breakerBox(bool switches[6], bool solved);
+    //Trevor additions
+        void intro();
         
 };

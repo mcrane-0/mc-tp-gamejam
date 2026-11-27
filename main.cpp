@@ -65,21 +65,15 @@ int main() {
 
 	//rooms.briefingRoom();
 	
-	// ani.centeredTyping({"this is a test", "please work", "thanks."});
-	// char c = _getch();
-	// cout << c << flush;
-	ani.centeredTyping({ "PLEASE ADJUST TERMINAL SIZE TO 80 x 25 CHARACTERS", "", "PRESS ENTER TO CONTINUE" }, { "PLEASE ADJUST TERMINAL SIZE TO 80 x 25 CHARACTERS", "", "PRESS ENTER TO CONTINUE" });
-	ani.centeredTyping({ "INSERT TITLE HERE", "By Miles Crane and Trevor Past", "For the Fall 2026 MSU Game Jam", "", "PRESS ENTER TO CONTINUE" }, { "INSERT TITLE HERE", "By Miles Crane and Trevor Past", "For the Fall 2026 MSU Game Jam", "", "PRESS ENTER TO CONTINUE" });
-	ani.centeredTyping({ "HOW TO INTERACT WITH GAME:", "", "Options for input will be shown on screen in between [square brackets].", "If you are given an \"[O]ption\", type \"O\" and press Enter to choose it.", "", "When there are no options shown on screen, press Enter to continue." }, { "HOW TO INTERACT WITH GAME:", "", "Options for input will be shown on screen in between [square brackets].", "If you are given an \"[O]ption\", type \"O\" and press Enter to choose it.", "", "When there are no options shown on screen, press Enter to continue." });
-	//outscr.setEcho(false);
-	//outscr.printCameraList();
-	//outscr.setEcho(true);
-
+	//ani.centeredTyping({ "PLEASE ADJUST TERMINAL SIZE TO 80 x 25 CHARACTERS", "", "PRESS ENTER TO CONTINUE" }, { "PLEASE ADJUST TERMINAL SIZE TO 80 x 25 CHARACTERS", "", "PRESS ENTER TO CONTINUE" });
+	//ani.centeredTyping({ "INSERT TITLE HERE", "By Miles Crane and Trevor Past", "For the Fall 2026 MSU Game Jam", "", "PRESS ENTER TO CONTINUE" }, { "INSERT TITLE HERE", "By Miles Crane and Trevor Past", "For the Fall 2026 MSU Game Jam", "", "PRESS ENTER TO CONTINUE" });
+	//ani.centeredTyping({ "HOW TO INTERACT WITH GAME:", "", "Options for input will be shown on screen in between [square brackets].", "If you are given an \"[O]ption\", type \"O\" and press Enter to choose it.", "", "When there are no options shown on screen, press Enter to continue." }, { "HOW TO INTERACT WITH GAME:", "", "Options for input will be shown on screen in between [square brackets].", "If you are given an \"[O]ption\", type \"O\" and press Enter to choose it.", "", "When there are no options shown on screen, press Enter to continue." });
+	rooms.intro();
 	bool flag = true;
     while (flag == true)
     {
         string userNameInput;
-        player.setUserName(ani.centeredTypingGetString({" ENTER NAME NOW "}, {" ENTER NAME NOW "}));
+        player.setUserName(ani.printTextScreenWithInput({" ENTER NAME NOW "}));
         userNameInput = ani.centeredTypingGetChar({"You have entered ", player.getUserName(), "Is this correct? (y/N)?"}, {"You have entered ", player.getUserName(), "Is this correct? (y/N)?"});
         //cin.ignore(streamsize(), '\n');
         //cin >> userNameInput;

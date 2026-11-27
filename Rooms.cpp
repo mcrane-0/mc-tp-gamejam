@@ -34,7 +34,7 @@ Rooms::Rooms(){ };
     CYAN = "\033[36m";
     RESET = "\033[0m";
 */
-
+/*
 void Rooms::setEcho(bool echoState) {
     #ifdef __APPLE__
         if (!echoState) {
@@ -53,7 +53,7 @@ void Rooms::setEcho(bool echoState) {
             echo_altered = false;
         }
     #endif
-}
+}*/
 void Rooms::flushPendingKeystrokes()
 {
     #if defined(__APPLE__) || defined(__linux__)
@@ -368,7 +368,7 @@ void Rooms::cameraScreen(){
 
 void Rooms::breakerBox(bool switches[6], bool solved){
     cout << "\033[3J" << "\033[?1049h" << flush;
-    setEcho(false);
+    ani.setEcho(false);
     resizeConsole();
 
     string frame;
@@ -427,6 +427,13 @@ void Rooms::breakerBox(bool switches[6], bool solved){
     frame += string(79, '-'); // bottom line
 
     cout << frame << flush;
-    setEcho(true);
+    ani.setEcho(true);
 }
 
+//Trevor additions
+void Rooms::intro()
+{
+    ani.printTextScreen( {"PLEASE ADJUST TERMINAL SIZE TO 80 x 25 CHARACTERS", "", "PRESS ENTER TO CONTINUE"});
+    ani.printTextScreen({"INSERT TITLE HERE", "By Miles Crane and Trevor Past", "For the Fall 2026 MSU Game Jam", "", "PRESS ENTER TO CONTINUE"});
+    ani.printTextScreen({"HOW TO INTERACT WITH GAME:", "", "Options for input will be shown on screen in between [square brackets].", "If you are given an \"[O]ption\", type \"O\" and press Enter to choose it.", "", "When there are no options shown on screen, press Enter to continue."});
+}

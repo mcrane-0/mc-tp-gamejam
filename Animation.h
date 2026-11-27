@@ -36,6 +36,9 @@ struct termios saved_tio;
     void centeredTypingNoWait(const vector<string>& lines, int size);//lets you enforce # of lines in last call in chain-
     //-so that vertical padding is calculated accurately
     void centeredTypingNoWait(const vector<string>& lines, const vector<string>& initialLines, int size);
-
+//Output Screens
+    void clearScreen();
+    void printTextScreen(const vector<string>& lines);
+    string printTextScreenWithInput(const vector<string>& lines);
 
 };
