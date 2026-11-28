@@ -55,12 +55,13 @@ class Rooms{
         void crewQuarters(GameState& state);
         void briefingRoomIntro(GameState& state);
         void airlock(GameState& state);
+        void messHall(GameState& state);
+        void breakerBox(bool switches[6], bool solved);
 
         void cameraScreen(int page, int camerasAvailable, string bottomText);
         void cameraScreen(int page, int camerasAvailable);
         void cameraScreen();
-        void breakerBox(bool switches[6], bool solved);
-
+        
         void roomList(GameState& state);
         
 };
