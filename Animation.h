@@ -42,5 +42,6 @@ struct termios saved_tio;
     void clearScreen();
     void printTextScreen(const vector<string>& lines);
     string printTextScreenWithInput(const vector<string>& lines);
+    void printFullScreen(const string& screen);
 
 };

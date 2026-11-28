@@ -28,7 +28,7 @@ Animation ani;
 //GameState state;
 Rooms::Rooms()
 {
-    invertedAirlockCopy = R"(                                                      █                         
+    /*invertedAirlockCopy = R"(                                                      █                         
                                                       █                         
                           █                            █                        
                         ██                              ██                      
@@ -53,9 +53,35 @@ Rooms::Rooms()
                     ██                                        ███               
                  ███                                          █                 
                    ███                                                          
-)";
+)";*/
 
-    crewQuartersArt = R"(  █      ░█        ██   ░ █      █                                            
+    airlockArt = R"(--------------------------------------------------------------------------------
+|                                                                              |
+|               ________________________________________________               |
+|              /                                                \              |
+|             /                                                  \             |
+|            /                                                    \            |
+|           /                ---------------------------           \           |
+|          /                /         .           .    |            \          |
+|         /                /      *          *         |             \         |
+|         |               /  *        .              . |             |         |
+|         |              /         .     o     .       |             |         |
+|         |              |  .                *     *   /             |         |
+|         |              |      .                .    /              |         |
+|         |              | .         .   *   .       /               |         |
+|         |              | *    .          .    .   /                |         |
+|         |              ---------------------------                 |         |
+|         |                                                          |         |
+|         |                                                          |         |
+|         -----__________________________________________________-----         |
+|            /|                                                  |\            |
+|           /                                                      \           |
+|__________/                                                        \__________|
+|          |                                                        |          |
+|                                                                              |
+-------------------------------------------------------------------------------)";
+
+    /* crewQuartersArt = R"(  █      ░█        ██   ░ █      █                                            
   █ █ █░ ░░░░█    ░ ███  █  █░   █                                        ███ 
   ██   ░██░█░ ░ ░  █ █  █  █░   ██                                    ███     
    ██░ █   ███ ░ █░░ ██   ░██ ███                        ████████████         
@@ -101,7 +127,33 @@ Rooms::Rooms()
     crewQuarters20 = "                                               █  ████████████████████████████";
     crewQuarters21 = "                                               █  █                           ";
     crewQuarters22 = "                                                █ █                           ";
-    crewQuarters23 = "                                                 █████████████████████████████";
+    crewQuarters23 = "                                                 █████████████████████████████"; */
+    crewQuartersArt = R"(--------------------------------------------------------------------------------
+|    |   *    .     .  |                                                       |
+|    | .   .    *   *  |                                                  _____|
+|    \   .  *     .    /                                                 /\    |
+|     \  .      o   * /                          -----------------------/  \   |
+|      ---------------                           |\                     \   \__|
+|________________________________________________| \                     \  /  |
+|                                                \  \_____________________\/___|
+|                                                 \ |                     _____|
+|                                                  \|                    /\    |
+|                                                -----------------------/  \   |
+|                                                |\                     \   \__|
+|                                                | \                     \  /  |
+|                                                \  \_____________________\/___|
+|                                                 \ |                     _____|
+|                                                  \|                    /\    |
+|                                                -----------------------/  \   |
+|                                                |\                     \   \__|
+|                                                | \                     \  /  |
+|                                                \  \_____________________\/___|
+|  There's nobody here...                         \ |                          |
+|                                                  \|                          |
+|                                                   ---------------------------|
+|                                                                              |
+-------------------------------------------------------------------------------)";
+
 }
 
 /* ASCII Colored Text
@@ -201,14 +253,16 @@ void Rooms::flightDeckIntro(GameState& state)
 void Rooms::crewQuarters(GameState& state)
 {
     ani.flushPendingKeystrokes();
-    ani.printTextScreen(
+    /* ani.printTextScreen(
         {crewQuarters1, crewQuarters2, crewQuarters3, crewQuarters4, crewQuarters5,
             crewQuarters6, crewQuarters7, crewQuarters8, crewQuarters9, crewQuarters10,
             crewQuarters11, crewQuarters12, crewQuarters13, crewQuarters14, crewQuarters15,
             crewQuarters16, crewQuarters17, crewQuarters18, crewQuarters19, "  There's nobody here...                        ████████████████████████████. |",
             crewQuarters21, crewQuarters22, crewQuarters23}
-        );
-        state.enterRoom(GameState::RoomName::RoomList);
+        ); */
+    ani.printFullScreen(crewQuartersArt);
+    
+    state.enterRoom(GameState::RoomName::RoomList);
 }
 
 void Rooms::briefingRoomIntro(GameState& state){
@@ -234,10 +288,11 @@ void Rooms::briefingRoomIntro(GameState& state){
 void Rooms::airlock(GameState& state)
 {
     ani.flushPendingKeystrokes();
-    ani.setEcho(false);
-    cout << invertedAirlockCopy;
-    cin.ignore();
-    ani.setEcho(true);
+    // ani.setEcho(false);
+    // cout << invertedAirlockCopy;
+    // cin.ignore();
+    // ani.setEcho(true);
+    ani.printFullScreen(airlockArt);
     if (!state.powerRestored)
     {
         ani.flushPendingKeystrokes();

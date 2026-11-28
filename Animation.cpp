@@ -929,6 +929,16 @@ string Animation::printTextScreenWithInput(const vector<string>& lines)
 	return answer;
 }
 
+void Animation::printFullScreen(const string& screen){
+    setEcho(false);
+
+	cout << screen << flush;
+
+	cin.ignore();
+    setEcho(true);
+	clearScreen();
+}
+
 
 
 

@@ -20,32 +20,35 @@ class Rooms{
         Animation ani;
     public:
         Rooms();
-        string invertedAirlockCopy;
-        string crewQuartersArt;
-        string crewQuarters1;
-        string crewQuarters2;
-        string crewQuarters3;
-        string crewQuarters4;
-        string crewQuarters5;
-        string crewQuarters6;
-        string crewQuarters7;
-        string crewQuarters8;
-        string crewQuarters9;
-        string crewQuarters10;
-        string crewQuarters11;
-        string crewQuarters12;
-        string crewQuarters13;
-        string crewQuarters14;
-        string crewQuarters15;
-        string crewQuarters16;
-        string crewQuarters17;
-        string crewQuarters18;
-        string crewQuarters19;
-        string crewQuarters20;
-        string crewQuarters21;
-        string crewQuarters22;
-        string crewQuarters23;
         //~Rooms();
+        
+        // string invertedAirlockCopy;
+        string airlockArt;
+        string crewQuartersArt;
+        // string crewQuarters1;
+        // string crewQuarters2;
+        // string crewQuarters3;
+        // string crewQuarters4;
+        // string crewQuarters5;
+        // string crewQuarters6;
+        // string crewQuarters7;
+        // string crewQuarters8;
+        // string crewQuarters9;
+        // string crewQuarters10;
+        // string crewQuarters11;
+        // string crewQuarters12;
+        // string crewQuarters13;
+        // string crewQuarters14;
+        // string crewQuarters15;
+        // string crewQuarters16;
+        // string crewQuarters17;
+        // string crewQuarters18;
+        // string crewQuarters19;
+        // string crewQuarters20;
+        // string crewQuarters21;
+        // string crewQuarters22;
+        // string crewQuarters23;
+        
         void setEcho(bool echoState);//setEcho(true) enables cursor and echo, (false) disables both
         void flushPendingKeystrokes();//remove user input from buffer
         void resizeConsole();
