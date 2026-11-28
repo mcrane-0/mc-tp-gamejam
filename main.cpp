@@ -164,7 +164,6 @@ string invertedAirlockCopy = R"(                                                
 
 
 
-
 	//rooms.briefingRoom();
 	
 	//ani.centeredTyping({ "PLEASE ADJUST TERMINAL SIZE TO 80 x 25 CHARACTERS", "", "PRESS ENTER TO CONTINUE" }, { "PLEASE ADJUST TERMINAL SIZE TO 80 x 25 CHARACTERS", "", "PRESS ENTER TO CONTINUE" });
@@ -248,54 +247,54 @@ string invertedAirlockCopy = R"(                                                
 		break;
 	}
 */
-	bool breakerSwitches[6] = { true, true, true, false, false, true }; // A, B, C, D, E, F    true = ON, false = OFF
-	char inputCh = ' ';
-	bool solved = false;
-	rooms.breakerBox(breakerSwitches, solved);
-	while (inputCh != 'x'){
-		inputCh = _getch();
-		switch (inputCh){
-			case ('a'):
-				breakerSwitches[0] = !(breakerSwitches[0]);
-				break;
-			case ('b'):
-				breakerSwitches[1] = !(breakerSwitches[1]);
-				break;
-			case ('c'):
-				breakerSwitches[2] = !(breakerSwitches[2]);
-				break;
-			case ('d'):
-				breakerSwitches[3] = !(breakerSwitches[3]);
-				break;
-			case ('e'):
-				breakerSwitches[4] = !(breakerSwitches[4]);
-				break;
-			case ('f'):
-				breakerSwitches[5] = !(breakerSwitches[5]);
-				break;
-		}
+	// bool breakerSwitches[6] = { true, true, true, false, false, true }; // A, B, C, D, E, F    true = ON, false = OFF
+	// char inputCh = ' ';
+	// bool solved = false;
+	// rooms.breakerBox(breakerSwitches, solved);
+	// while (inputCh != 'x'){
+	// 	inputCh = _getch();
+	// 	switch (inputCh){
+	// 		case ('a'):
+	// 			breakerSwitches[0] = !(breakerSwitches[0]);
+	// 			break;
+	// 		case ('b'):
+	// 			breakerSwitches[1] = !(breakerSwitches[1]);
+	// 			break;
+	// 		case ('c'):
+	// 			breakerSwitches[2] = !(breakerSwitches[2]);
+	// 			break;
+	// 		case ('d'):
+	// 			breakerSwitches[3] = !(breakerSwitches[3]);
+	// 			break;
+	// 		case ('e'):
+	// 			breakerSwitches[4] = !(breakerSwitches[4]);
+	// 			break;
+	// 		case ('f'):
+	// 			breakerSwitches[5] = !(breakerSwitches[5]);
+	// 			break;
+	// 	}
 
-		if ( breakerSwitches[0] && breakerSwitches[1] && breakerSwitches[2] && breakerSwitches[3] && breakerSwitches[4] && breakerSwitches[5] ){
-			solved = true;
-		}
+	// 	if ( breakerSwitches[0] && breakerSwitches[1] && breakerSwitches[2] && breakerSwitches[3] && breakerSwitches[4] && breakerSwitches[5] ){
+	// 		solved = true;
+	// 	}
 
-		rooms.breakerBox(breakerSwitches, solved);
+	// 	rooms.breakerBox(breakerSwitches, solved);
 
-		if (solved){
-			this_thread::sleep_for(3s);
-			break;
-		}
-	}
+	// 	if (solved){
+	// 		this_thread::sleep_for(3s);
+	// 		break;
+	// 	}
+	// }
 	
-	if (solved){
-		state.powerRestored = true;
-		rooms.cameraScreen();
-	}
-	else { // user just exited
-		ani.centeredTyping({"L"});
-		rooms.cameraScreen();
+	// if (solved){
+	// 	state.powerRestored = true;
+	// 	rooms.cameraScreen();
+	// }
+	// else { // user just exited
+	// 	ani.centeredTyping({"L"});
+	// 	rooms.cameraScreen();
 
-	}
+	// }
 
 
 	return 0;

@@ -11,7 +11,7 @@
 #endif
 
 using namespace std;
-//using namespace std::ranges;
+using namespace std::ranges;
 
         //OutputScreens outscr;
         Animation aniObj;       
@@ -19,6 +19,7 @@ using namespace std;
     GameState::GameState()
     {
         powerRestored = false;
+        breakerSwitches[0] = true; breakerSwitches[1] = true; breakerSwitches[2] = true; breakerSwitches[3] = false; breakerSwitches[4] = false; breakerSwitches[5] = true; // A, B, C, D, E, F    true = ON, false = OFF
         unlockedRooms.reserve(50);
         unlockedRooms = {GameState::RoomName::CrewQuarters, GameState::RoomName::BriefingRoom, GameState::RoomName::BriefingRoomIntro, GameState::RoomName::Airlock};
     }
@@ -54,6 +55,11 @@ using namespace std;
             enterRoom(GameState::RoomName::RoomList);
             break;
 
+        }
+        case GameState::RoomName::MessHallBreakerBox:
+        {
+            enterRoom(GameState::RoomName::MessHall);
+            break;
         }
         case GameState::RoomName::RoomList:
         {
@@ -106,6 +112,14 @@ using namespace std;
             }
             case GameState::RoomName::MessHall:
             {
+                setCurrentRoom(GameState::RoomName::MessHall);
+                roomObj.messHall(*this);
+                break;
+            }
+            case GameState::RoomName::MessHallBreakerBox:
+            {
+                setCurrentRoom(GameState::RoomName::MessHallBreakerBox);
+                roomObj.messHallBreakerBox(*this);
                 break;
             }
         }

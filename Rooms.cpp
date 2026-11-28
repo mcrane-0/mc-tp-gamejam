@@ -250,71 +250,79 @@ void Rooms::airlock(GameState& state)
 void Rooms::messHall(GameState& state){
     ani.centeredTyping({"At what time do astronauts eat?", "", ""});
     ani.centeredTyping({"At what time do astronauts eat?", "", "At LaUNCH TIME!"}, {"At what time do astronauts eat?", "", ""});
-    ani.printTextScreen({"okay this is the actual mess hall"});
+
+    ani.centeredTypingNoWait({"The mess hall is much smaller than one", "might expect for a ship of this size.", " ", "You see metal chairs, each fixed to the", "ground by a small metal column.", " ", "Clean tables and food trays are stacked", "neatly in the kitchen window.", " ", " "});
+    char ch = ' ';
+    while (ch != 'x' && ch != 'c'){
+        ch = ani.centeredTypingGetChar({"The mess hall is much smaller than one", "might expect for a ship of this size.", " ", "You see metal chairs, each fixed to the", "ground by a small metal column.", " ", "Clean tables and food trays are stacked", "neatly in the kitchen window.", " ", "(C)ontinue    E(x)it"}, {"The mess hall is much smaller than one", "might expect for a ship of this size.", " ", "You see metal chairs, each fixed to the", "ground by a small metal column.", " ", "Clean tables and food trays are stacked", "neatly in the kitchen window.", " ", "(C)ontinue    E(x)it"});
+    }
+    if (ch == 'c'){ // continue (to breaker box)
+        state.enterRoom(GameState::RoomName::MessHallBreakerBox);
+    }
+    else if (ch == 'x'){ // exit (back to room list)
+        state.exitRoom();
+    }
+    state.exitRoom();
+	
 }
-void Rooms::breakerBox(bool switches[6], bool solved){
-    cout << "\033[3J" << "\033[?1049h" << flush;
-    ani.setEcho(false);
-    resizeConsole();
-
-    string frame;
-    frame.reserve(2100);//pre-allocate all the available characters on screen
-
-
-    frame += "\033[H";//move cursor to top left
-    frame += string(80, '-') + "\n";//render top line
-    frame += "|" + string(78, ' ') + "|\n"; // blank space
-    if (solved){
-        frame += "|" + string(31, ' ') + "\033[32mPOWER RESTORED!\033[0m" + string(32, ' ') + "|\n";
+void Rooms::messHallBreakerBox(GameState& state){
+	char ch = ' ';
+    if (state.powerRestored){ // power has been restored
+        ch = ' ';
+        while (ch != 'x'){
+            breakerBox(state.breakerSwitches, state.powerRestored);
+        }
     }
-    else {
-        frame += "|" + string(15, ' ') + "You notice a small breaker panel on the wall..." + string(16, ' ') + "|\n";
-    }
-    for (int i = 0; i < 5; i++){ frame += "|" + string(78, ' ') + "|\n"; } // 5 blank spaces
-
-    // left-to-right centering
-    for (int i = 0; i < 3; i++)
-    {
-        int leftSwitch = i;
-        int rightSwitch = (i+3);
-        char leftSwitchChar = leftSwitch + 65;
-        char rightSwitchChar = rightSwitch + 65; 
-
-        frame += "|" + string(27, ' ') + "----------    ----------" + string(27, ' ') + "|\n";
-
-        if (switches[leftSwitch] == true) { // left switch is on
-            if (switches[rightSwitch] == true) { // and right switch is on
-                frame += "|" + string(27, ' ') + "| (" + leftSwitchChar + ") --]|    |[-- (" + rightSwitchChar + ") |" + string(27, ' ') + "|\n";
+    else { // power hasn't been restored
+        breakerBox(state.breakerSwitches, state.powerRestored);
+        ch = ' ';
+        while (ch != 'x'){
+            ch = ani._getchAnimation();
+            switch (ch){
+                case ('a'):
+                    state.breakerSwitches[0] = !(state.breakerSwitches[0]);
+                    break;
+                case ('b'):
+                    state.breakerSwitches[1] = !(state.breakerSwitches[1]);
+                    break;
+                case ('c'):
+                    state.breakerSwitches[2] = !(state.breakerSwitches[2]);
+                    break;
+                case ('d'):
+                    state.breakerSwitches[3] = !(state.breakerSwitches[3]);
+                    break;
+                case ('e'):
+                    state.breakerSwitches[4] = !(state.breakerSwitches[4]);
+                    break;
+                case ('f'):
+                    state.breakerSwitches[5] = !(state.breakerSwitches[5]);
+                    break;
             }
-            else { // and right switch is off
-                frame += "|" + string(27, ' ') + "| (" + leftSwitchChar + ") --]|    | --](" + rightSwitchChar + ") |" + string(27, ' ') + "|\n";
+
+            if ( state.breakerSwitches[0] && state.breakerSwitches[1] && state.breakerSwitches[2] && state.breakerSwitches[3] && state.breakerSwitches[4] && state.breakerSwitches[5] ){
+                state.powerRestored = true;
+                break;
+            }
+
+            breakerBox(state.breakerSwitches, state.powerRestored);
+        }
+        
+        if (state.powerRestored){
+            ch = ' ';
+            while (ch != 'x'){
+                breakerBox(state.breakerSwitches, state.powerRestored);
+                ch = ani._getchAnimation();
             }
         }
-        else { // left switch is off
-            if (switches[rightSwitch] == true) { // and right switch is on
-                frame += "|" + string(27, ' ') + "| (" + leftSwitchChar + ")[-- |    |[-- (" + rightSwitchChar + ") |" + string(27, ' ') + "|\n";
-            }
-            else { // and right switch is off
-                frame += "|" + string(27, ' ') + "| (" + leftSwitchChar + ")[-- |    | --](" + rightSwitchChar + ") |" + string(27, ' ') + "|\n";
-            }
-        }
+        // else { // user just exited
+        //     ani.centeredTyping({"L"});
+        //     cameraScreen();
 
-        frame += "|" + string(27, ' ') + "----------    ----------" + string(27, ' ') + "|\n";
-        frame += "|" + string(78, ' ') + "|\n";
+        // }
     }
-
-    for (int i = 0; i < 3; i++) { frame += "|" + string(78, ' ') + "|\n"; } // 3 blank spaces
-    if (solved){
-        frame += "|" + string(78, ' ') + "|\n";
-    }
-    else {
-        frame += "| E(x)it" + string(71, ' ') + "|\n";
-    }
-    frame += string(79, '-'); // bottom line
-
-    cout << frame << flush;
-    ani.setEcho(true);
+    state.exitRoom();
 }
+
 
 
 void Rooms::cameraScreen(int page, int camerasAvailable, string bottomText){
@@ -580,6 +588,71 @@ void Rooms::cameraScreen(int page, int camerasAvailable){
 }
 void Rooms::cameraScreen(){
     cameraScreen(1, 4, "SELECT A CAMERA");
+}
+
+void Rooms::breakerBox(bool switches[6], bool solved){
+    cout << "\033[3J" << "\033[?1049h" << flush;
+    ani.setEcho(false);
+    resizeConsole();
+
+    string frame;
+    frame.reserve(2100);//pre-allocate all the available characters on screen
+
+
+    frame += "\033[H";//move cursor to top left
+    frame += string(80, '-') + "\n";//render top line
+    frame += "|" + string(78, ' ') + "|\n"; // blank space
+    if (solved){
+        frame += "|" + string(31, ' ') + "\033[32mPOWER RESTORED!\033[0m" + string(32, ' ') + "|\n";
+    }
+    else {
+        frame += "|" + string(15, ' ') + "You notice a small breaker panel on the wall..." + string(16, ' ') + "|\n";
+    }
+    for (int i = 0; i < 5; i++){ frame += "|" + string(78, ' ') + "|\n"; } // 5 blank spaces
+
+    // left-to-right centering
+    for (int i = 0; i < 3; i++)
+    {
+        int leftSwitch = i;
+        int rightSwitch = (i+3);
+        char leftSwitchChar = leftSwitch + 65;
+        char rightSwitchChar = rightSwitch + 65; 
+
+        frame += "|" + string(27, ' ') + "----------    ----------" + string(27, ' ') + "|\n";
+
+        if (switches[leftSwitch] == true) { // left switch is on
+            if (switches[rightSwitch] == true) { // and right switch is on
+                frame += "|" + string(27, ' ') + "| (" + leftSwitchChar + ") --]|    |[-- (" + rightSwitchChar + ") |" + string(27, ' ') + "|\n";
+            }
+            else { // and right switch is off
+                frame += "|" + string(27, ' ') + "| (" + leftSwitchChar + ") --]|    | --](" + rightSwitchChar + ") |" + string(27, ' ') + "|\n";
+            }
+        }
+        else { // left switch is off
+            if (switches[rightSwitch] == true) { // and right switch is on
+                frame += "|" + string(27, ' ') + "| (" + leftSwitchChar + ")[-- |    |[-- (" + rightSwitchChar + ") |" + string(27, ' ') + "|\n";
+            }
+            else { // and right switch is off
+                frame += "|" + string(27, ' ') + "| (" + leftSwitchChar + ")[-- |    | --](" + rightSwitchChar + ") |" + string(27, ' ') + "|\n";
+            }
+        }
+
+        frame += "|" + string(27, ' ') + "----------    ----------" + string(27, ' ') + "|\n";
+        frame += "|" + string(78, ' ') + "|\n";
+    }
+
+    for (int i = 0; i < 3; i++) { frame += "|" + string(78, ' ') + "|\n"; } // 3 blank spaces
+    // if (solved){
+    //     frame += "|" + string(78, ' ') + "|\n";
+    // }
+    // else {
+    //     frame += "| E(x)it" + string(71, ' ') + "|\n";
+    // }
+    frame += "| E(x)it" + string(71, ' ') + "|\n";
+    frame += string(79, '-'); // bottom line
+
+    cout << frame << flush;
+    ani.setEcho(true);
 }
 
 

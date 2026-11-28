@@ -24,10 +24,12 @@ class GameState
         BriefingRoomIntro,
         Airlock,
         MessHall,
+        MessHallBreakerBox,
         RoomList,
  };
         GameState();
         bool powerRestored;
+        bool breakerSwitches[6];
         vector<RoomName> unlockedRooms;//do .reserve(50) for 50 rooms i think
         void unlockRoom(RoomName room);
         RoomName getCurrentRoom() const;
