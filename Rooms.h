@@ -50,19 +50,17 @@ class Rooms{
         void flushPendingKeystrokes();//remove user input from buffer
         void resizeConsole();
 
+        void intro();
+        void flightDeckIntro(GameState& state);
+        void crewQuarters(GameState& state);
         void briefingRoomIntro(GameState& state);
-        void roomList(GameState& state);
+        void airlock(GameState& state);
 
         void cameraScreen(int page, int camerasAvailable, string bottomText);
         void cameraScreen(int page, int camerasAvailable);
         void cameraScreen();
         void breakerBox(bool switches[6], bool solved);
-    //Trevor additions
-        void intro();
-        void flightDeckIntro(GameState& state);
-        void airlock(GameState& state);
-        void crewQuarters(GameState& state);
 
-
+        void roomList(GameState& state);
         
 };
